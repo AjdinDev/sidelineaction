@@ -2,10 +2,12 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-type ShootData = CollectionEntry<'shoots'>['data'];
+type ShootData = Omit<CollectionEntry<'shoots'>['data'], 'type'>;
 
 export type Shoot = ShootData & {
   slug: string;
+  type: string;
+  typeReference: string;
 };
 
 export interface RenderedPhoto {
@@ -35,11 +37,27 @@ function validateShoot(shoot: Shoot): void {
 }
 
 export async function getPublishedShoots(): Promise<Shoot[]> {
-  const entries = await getCollection('shoots', ({ data }) => data.published);
-  const shoots = entries.map((entry) => ({
-    ...entry.data,
-    slug: slugFromEntryId(entry.id),
-  }));
+  const [entries, typeEntries] = await Promise.all([
+    getCollection('shoots', ({ data }) => data.published),
+    getCollection('shootTypes'),
+  ]);
+  const typeNames = new Map(typeEntries.map((entry) => [slugFromEntryId(entry.id), entry.data.name]));
+  const shoots = entries.map((entry) => {
+    const typeReference = entry.data.type;
+    const typeId = slugFromEntryId(typeReference);
+    const type = typeNames.get(typeId);
+
+    if (!type) {
+      throw new Error(`Portfolio-item "${entry.data.title}" verwijst naar een onbekend type: ${typeReference}`);
+    }
+
+    return {
+      ...entry.data,
+      slug: slugFromEntryId(entry.id),
+      type,
+      typeReference,
+    };
+  });
 
   shoots.forEach(validateShoot);
 
@@ -67,8 +85,8 @@ export async function preparePhoto(photo: ImageMetadata): Promise<RenderedPhoto>
   };
 }
 
-export function photoAlt(shoot: Shoot, index: number): string {
-  return `${shoot.title} — ${shoot.type.toLowerCase()} in ${shoot.location} — foto ${index + 1} van Sideline Action`;
+export function photoAlt(shoot: Shoot, index: number, brandName: string): string {
+  return `${shoot.title} — ${shoot.type.toLowerCase()} in ${shoot.location} — foto ${index + 1} van ${brandName}`;
 }
 
 export function formatShootDate(date?: string): string | null {

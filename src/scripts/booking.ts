@@ -1,6 +1,7 @@
 const bookingForm = document.querySelector<HTMLFormElement>('#booking-form');
 
 if (bookingForm) {
+  const fallbackEmail = bookingForm.dataset.fallbackEmail ?? '';
   // Keep native browser validation as the no-JavaScript fallback. When this
   // script is active, use the form's inline error messages instead.
   bookingForm.noValidate = true;
@@ -78,7 +79,8 @@ if (bookingForm) {
       bookingForm.querySelectorAll('.has-error').forEach((element) => element.classList.remove('has-error'));
     } catch (error) {
       const message = error instanceof Error ? error.message : 'De aanvraag kon niet worden verzonden.';
-      setStatus('err', `${message} Je kunt ook mailen naar harunviteskic50@gmail.com.`);
+      const fallback = fallbackEmail ? ` Je kunt ook mailen naar ${fallbackEmail}.` : '';
+      setStatus('err', `${message}${fallback}`);
     } finally {
       submit?.classList.remove('is-loading');
       if (submit) submit.disabled = false;

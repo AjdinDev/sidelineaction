@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentCta from '../../components/ContentCta.astro';
+import { getPortfolioPage, getSiteSettings, resolveSiteTokens } from '../../data/content';
 import { formatShootDate, getPublishedShoots, photoAlt, preparePhoto, type Shoot } from '../../data/shoots';
 
 export async function getStaticPaths() {
@@ -19,9 +21,14 @@ interface Props {
 }
 
 const { shoot, nextShoot } = Astro.props;
-const renderedPhotos = await Promise.all(shoot.photos.map(preparePhoto));
+const [renderedPhotos, settings, rawPage] = await Promise.all([
+  Promise.all(shoot.photos.map(preparePhoto)),
+  getSiteSettings(),
+  getPortfolioPage(),
+]);
+const page = resolveSiteTokens(rawPage, settings);
 const formattedDate = formatShootDate(shoot.date);
-const description = `${shoot.title} — ${shoot.photos.length} foto's van ${shoot.type.toLowerCase()} in ${shoot.location}, gefotografeerd door Sideline Action.`;
+const description = `${shoot.title} — ${shoot.photos.length} foto's van ${shoot.type.toLowerCase()} in ${shoot.location}, gefotografeerd door ${settings.brand_name}.`;
 const ratios = ['ratio--45', 'ratio--34', 'ratio--23', 'ratio--45', 'ratio--34'];
 const frameFor = (index: number) => {
   if (index % 11 === 0) {
@@ -37,21 +44,21 @@ const frameFor = (index: number) => {
 };
 ---
 
-<BaseLayout title={`${shoot.title} | Sideline Action — Sportfotografie Antwerpen`} description={description} image={renderedPhotos[0].src}>
+<BaseLayout title={`${shoot.title} | ${settings.brand_name} — Sportfotografie Antwerpen`} description={description} image={renderedPhotos[0].src}>
   <main id="main">
     <section class="page-head">
       <div class="wrap">
         <nav class="crumb" aria-label="Kruimelpad">
-          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/portfolio">Portfolio</a><span aria-hidden="true">/</span><span aria-current="page">{shoot.title}</span>
+          <a href="/">{page.detail.home_label}</a><span aria-hidden="true">/</span><a href="/portfolio">{page.detail.portfolio_label}</a><span aria-hidden="true">/</span><span aria-current="page">{shoot.title}</span>
         </nav>
         <h1 class="page-head__title">{shoot.title}</h1>
         <p class="lead page-head__lead">{shoot.intro}</p>
         <div class="mt-4">
           <ul class="contact-list" style="border-top:1px solid var(--line)">
-            <li><span class="row"><span class="k">Type</span><span class="v">{shoot.type}</span><span></span></span></li>
-            <li><span class="row"><span class="k">Locatie</span><span class="v">{shoot.location}</span><span></span></span></li>
-            {formattedDate && <li><span class="row"><span class="k">Datum</span><span class="v">{formattedDate}</span><span></span></span></li>}
-            <li><span class="row"><span class="k">Foto's</span><span class="v">{shoot.photos.length}</span><span></span></span></li>
+            <li><span class="row"><span class="k">{page.detail.type_label}</span><span class="v">{shoot.type}</span><span></span></span></li>
+            <li><span class="row"><span class="k">{page.detail.location_label}</span><span class="v">{shoot.location}</span><span></span></span></li>
+            {formattedDate && <li><span class="row"><span class="k">{page.detail.date_label}</span><span class="v">{formattedDate}</span><span></span></span></li>}
+            <li><span class="row"><span class="k">{page.detail.photos_label}</span><span class="v">{shoot.photos.length}</span><span></span></span></li>
           </ul>
         </div>
       </div>
@@ -64,7 +71,7 @@ const frameFor = (index: number) => {
             const frame = frameFor(index);
             const renderedPhoto = renderedPhotos[index];
             const src = renderedPhoto.src;
-            const alt = photoAlt(shoot, index);
+            const alt = photoAlt(shoot, index, settings.brand_name);
             return (
               <button
                 class={`gal__item ${frame.className}`}
@@ -90,30 +97,11 @@ const frameFor = (index: number) => {
       <section class="section section--half section--top0">
         <div class="wrap">
           <hr class="rule" />
-          <div class="mt-3"><a class="link" href={`/portfolio/${nextShoot.slug}`}>Volgende shoot: {nextShoot.title}</a></div>
+          <div class="mt-3"><a class="link" href={`/portfolio/${nextShoot.slug}`}>{page.detail.next_label}: {nextShoot.title}</a></div>
         </div>
       </section>
     )}
 
-    <section class="section">
-      <div class="wrap">
-        <div class="split split--top">
-          <div>
-            <p class="label label--rule">Boeken</p>
-            <h2 class="h2 mt-2" data-reveal>Zin in wedstrijdbeelden zoals deze?</h2>
-            <p class="muted mt-3 measure" data-reveal="fade">Laat weten of het om een clubreportage of één speler gaat en ik neem zo snel mogelijk contact op.</p>
-            <div class="btn-row mt-4" data-reveal>
-              <a class="btn btn--solid" href="/boeken"><span>Boek een shoot</span></a>
-              <a class="link" href="/aanbod">Bekijk het aanbod</a>
-            </div>
-          </div>
-          <div data-reveal="mask">
-            <div class="ratio ratio--45 zoom">
-              <img src="/assets/img/site/band-cta.webp" alt="Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — Sideline Action" width="900" height="1350" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <ContentCta content={page.detail_cta} />
   </main>
 </BaseLayout>

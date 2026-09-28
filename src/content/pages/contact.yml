@@ -1,0 +1,20 @@
+seo:
+  title: Contact | {brand_name} — Sportfotograaf Antwerpen
+  description: Neem contact op met {brand_name} voor voetbalfotografie in {region}.
+header:
+  label: Contact
+  title: Contact
+  intro: Een vraag over clubfotografie, een individuele spelersshoot, het aanbod of de afspraken? Stuur gerust een bericht.
+company_label: Bedrijf
+photographer_label: Fotograaf
+email_label: E-mail
+instagram_label: Instagram
+tiktok_label: TikTok
+region_label: Regio
+booking_note:
+  title: Een wedstrijd of spelersshoot boeken?
+  text: "Gebruik het boekingsformulier. Dan heb ik meteen de gegevens die ik nodig heb: soort opdracht, datum, uur en locatie."
+  button_label: Boek een shoot
+image:
+  src: /assets/img/site/contact.webp
+  alt: Spelers in duel om de bal langs de zijlijn — {brand_name}, sportfotografie Antwerpen

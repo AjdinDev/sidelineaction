@@ -1,23 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getBookingPage, getSiteSettings, resolveSiteTokens } from '../data/content';
+
+const settings = await getSiteSettings();
+const page = resolveSiteTokens(await getBookingPage(), settings);
 ---
 
-<BaseLayout title="Boek voetbalfotografie | Sideline Action" description="Vraag een wedstrijdreportage of individuele spelersshoot aan bij Sideline Action.">
+<BaseLayout title={page.seo.title} description={page.seo.description} image={page.seo.image}>
   <main id="main">
-    <section class="page-head">
-      <div class="wrap">
-        <p class="label label--rule">Boeken</p>
-        <h1 class="page-head__title" data-reveal>Boek een shoot</h1>
-        <p class="lead page-head__lead" data-reveal="fade">Voor een volledige clubwedstrijd of één individuele speler. Vul het korte formulier in en ik neem zo snel mogelijk contact met je op.</p>
-
-      </div>
-    </section>
+    <PageHeader {...page.header} />
 
     <section class="section section--top0">
       <div class="wrap">
         <div class="split split--top">
           <div>
-            <form class="form" id="booking-form" name="boeking" method="POST" action="/api/booking">
+            <form class="form" id="booking-form" name="boeking" method="POST" action="/api/booking" data-fallback-email={settings.contact.email}>
               <p class="hp" aria-hidden="true"><label>Laat dit veld leeg <input name="website" tabindex="-1" autocomplete="off"></label></p>
 
               <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
@@ -94,10 +92,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
               <div>
                 <button class="btn btn--solid" type="submit" id="booking-submit">
-                  <span class="btn-label">Aanvraag versturen</span>
+                  <span class="btn-label">{page.submit_label}</span>
                   <span class="spinner" aria-hidden="true"></span>
                 </button>
-                <p class="hint mt-2">Je gegevens worden alleen gebruikt om contact met je op te nemen over deze aanvraag.</p>
+                <p class="hint mt-2">{page.privacy_text}</p>
               </div>
             </form>
           </div>
@@ -106,20 +104,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div data-reveal="mask">
               <div class="ratio ratio--45  ">
 
-              <img src="/assets/img/site/boeken.webp"
-                   alt="Spelers in duel tijdens een voetbalwedstrijd in Antwerpen — Sideline Action" width="900" height="1350"
+              <img src={page.sidebar.image.src}
+                   alt={page.sidebar.image.alt} width="900" height="1350"
                    loading="lazy" decoding="async">
             </div>
             </div>
             <div class="mt-4">
-              <p class="label label--rule">Duidelijke afspraken</p>
+              <p class="label label--rule">{page.sidebar.label}</p>
               <ul class="checks mt-3">
-                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Voor clubs én individuele spelers</span></li>
-                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Binnen maximaal 5 dagen</span></li>
-                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Digitaal, in volledige resolutie</span></li>
-                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Betaalbare en bespreekbare prijzen</span></li>
+                {page.sidebar.items.map((item) => (
+                  <li><span class="tick" aria-hidden="true">&mdash;</span><span>{item}</span></li>
+                ))}
               </ul>
-              <p class="hint mt-3">Liever rechtstreeks mailen? <a href="mailto:harunviteskic50@gmail.com" style="color:var(--ink)">harunviteskic50@gmail.com</a></p>
+              <p class="hint mt-3">{page.sidebar.direct_email_label} <a href={`mailto:${settings.contact.email}`} style="color:var(--ink)">{settings.contact.email}</a></p>
             </div>
           </aside>
         </div>

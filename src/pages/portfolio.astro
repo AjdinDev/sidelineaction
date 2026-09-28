@@ -1,8 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentCta from '../components/ContentCta.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getPortfolioPage, getSiteSettings, resolveSiteTokens } from '../data/content';
 import { formatShootDate, getPublishedShoots, photoAlt, preparePhoto } from '../data/shoots';
 
-const publishedShoots = await getPublishedShoots();
+const [publishedShoots, settings, rawPage] = await Promise.all([
+  getPublishedShoots(),
+  getSiteSettings(),
+  getPortfolioPage(),
+]);
+const page = resolveSiteTokens(rawPage, settings);
 const shootCards = await Promise.all(publishedShoots.map(async (shoot) => ({
   shoot,
   cover: await preparePhoto(shoot.cover),
@@ -10,17 +18,12 @@ const shootCards = await Promise.all(publishedShoots.map(async (shoot) => ({
 ---
 
 <BaseLayout
-  title="Portfolio | Sideline Action — Voetbalfotografie Antwerpen"
-  description="Bekijk wedstrijden en spelersshoots van Sideline Action in Antwerpen en omgeving."
+  title={page.seo.title}
+  description={page.seo.description}
+  image={page.seo.image}
 >
   <main id="main">
-    <section class="page-head">
-      <div class="wrap">
-        <p class="label label--rule">Portfolio</p>
-        <h1 class="page-head__title" data-reveal>Het werk</h1>
-        <p class="lead page-head__lead" data-reveal="fade">Wedstrijden en shoots in Antwerpen en omgeving. Klik op een shoot voor de volledige reeks.</p>
-      </div>
-    </section>
+    <PageHeader {...page.header} />
 
     <section class="section section--top0">
       <div class="wrap">
@@ -39,7 +42,7 @@ const shootCards = await Promise.all(publishedShoots.map(async (shoot) => ({
                       decoding="async"
                       width={cover.width}
                       height={cover.height}
-                      alt={photoAlt(shoot, Math.max(0, resolvedCoverIndex))}
+                      alt={photoAlt(shoot, Math.max(0, resolvedCoverIndex), settings.brand_name)}
                     />
                   </div>
                   <div class="work-card__foot">
@@ -55,32 +58,13 @@ const shootCards = await Promise.all(publishedShoots.map(async (shoot) => ({
           </div>
         ) : (
           <div class="empty">
-            <h2>Nog geen shoots gepubliceerd</h2>
-            <p>Zodra de foto's van een wedstrijd verwerkt zijn, verschijnen ze hier automatisch.</p>
+            <h2>{page.empty.title}</h2>
+            <p>{page.empty.text}</p>
           </div>
         )}
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="split split--top">
-          <div>
-            <p class="label label--rule">Boeken</p>
-            <h2 class="h2 mt-2" data-reveal>Ook beelden van je club of van één speler?</h2>
-            <p class="muted mt-3 measure" data-reveal="fade">Vertel welke wedstrijd of opdracht je in gedachten hebt en ik neem zo snel mogelijk contact op.</p>
-            <div class="btn-row mt-4" data-reveal>
-              <a class="btn btn--solid" href="/boeken"><span>Boek een shoot</span></a>
-              <a class="link" href="/aanbod">Bekijk het aanbod</a>
-            </div>
-          </div>
-          <div data-reveal="mask">
-            <div class="ratio ratio--45 zoom">
-              <img src="/assets/img/site/band-cta.webp" alt="Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — Sideline Action" width="900" height="1350" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <ContentCta content={page.cta} />
   </main>
 </BaseLayout>

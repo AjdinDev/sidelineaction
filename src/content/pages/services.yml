@@ -1,0 +1,74 @@
+seo:
+  title: Diensten | Voetbalfotografie voor clubs en spelers — {brand_name}
+  description: Voetbalfotografie voor volledige clubs en individuele spelers in {region}.
+header:
+  label: Diensten
+  title: Diensten
+  intro: Professionele voetbalbeelden voor een volledige club of gericht voor één individuele speler.
+audiences:
+  - title: Voor clubs
+    text: "Ik fotografeer de volledige wedstrijd: actie, spelers, duels, teams, fans en sfeer. De beelden zijn geschikt voor sociale media, websites en clubcommunicatie."
+    link_label: Bespreek een wedstrijd
+  - title: Voor spelers
+    text: Je hoeft niet via een club te boeken. Ik kan één speler tijdens een wedstrijd gericht volgen voor persoonlijke actiefoto's en professionele beelden voor Instagram of andere profielen.
+    link_label: Bespreek een spelersshoot
+gallery:
+  label: In beeld
+  title: Wat ik vastleg.
+  intro: De nadruk ligt op echte wedstrijdmomenten, met ruimte voor zowel het grotere verhaal als één speler in actie.
+  items:
+    - title: Actie
+      summary: Snelle momenten en belangrijke acties op het veld.
+      text: Duels, sprints, schoten en reddingen — de momenten waarop een wedstrijd gemaakt wordt.
+      image:
+        src: /assets/img/site/dienst-actie.webp
+        alt: Speler haalt uit naar de bal tijdens een voetbalwedstrijd in Antwerpen
+    - title: Spelers
+      summary: Individuele spelers en teammomenten.
+      text: Herkenbare beelden van elke speler, plus de momenten waarop het team samenkomt.
+      image:
+        src: /assets/img/site/dienst-spelers.webp
+        alt: Portret van een jeugdspeler tijdens een voetbalwedstrijd in Antwerpen
+    - title: Sfeer
+      summary: Fans, emoties en de sfeer rond de wedstrijd.
+      text: Wat er langs de lijn gebeurt hoort net zo goed bij de wedstrijd als wat er op het veld gebeurt.
+      image:
+        src: /assets/img/site/dienst-sfeer.webp
+        alt: Spelers vieren een moment tijdens een voetbalwedstrijd in Antwerpen
+    - title: Wedstrijdmomenten
+      summary: Belangrijke momenten tijdens de wedstrijd.
+      text: De aftrap, de bespreking van de coach, het doelpunt en het moment erna.
+      image:
+        src: /assets/img/site/dienst-momenten.webp
+        alt: Het team verzamelt tijdens een voetbalwedstrijd in Antwerpen
+process:
+  label: Mijn aanpak
+  title: Van aftrap tot levering.
+  intro: Tijdens iedere wedstrijd probeer ik zoveel mogelijk momenten vast te leggen. Van snelle acties op het veld tot de sfeer langs de zijlijn. Daarna selecteer ik de sterkste beelden en werk ik die af.
+  steps:
+    - title: Afspraak vooraf
+      text: We spreken de wedstrijd en de afspraken kort door en zetten die op papier. Zo weet iedereen vooraf waar hij aan toe is.
+    - title: Tijdens de wedstrijd
+      text: "Ik sta langs de lijn en fotografeer de volledige wedstrijd: actie, spelers, sfeer en de belangrijke momenten."
+    - title: Selectie en bewerking
+      text: Na de wedstrijd bekijk ik alle beelden, kies ik de sterkste en bewerk ik die zorgvuldig in mijn bestaande stijl.
+    - title: Levering binnen {delivery_days} dagen
+      text: Bij een volledige wedstrijdreportage ontvangt de club {photo_range} professioneel bewerkte foto's, digitaal en in volledige resolutie. Bij een spelersshoot spreken we de selectie vooraf af.
+facts:
+  label: Bij een volledige wedstrijd
+  items:
+    - value: "{photo_range}"
+      label: Professioneel bewerkte foto's per wedstrijd. Minimaal {photo_minimum}.
+    - value: "{delivery_days}"
+      label: Dagen maximaal tussen de wedstrijd en de levering.
+    - value: "{delivery_format}"
+      label: Geleverd in volledige resolutie, meteen bruikbaar voor de clubkanalen.
+cta:
+  label: Boeken
+  title: Laat je wedstrijd of speler vastleggen.
+  text: Vul het korte formulier in met de datum en de locatie. Ik neem zo snel mogelijk contact op.
+  primary_label: Boek een shoot
+  secondary_label: Bekijk het aanbod
+  image:
+    src: /assets/img/site/band-cta.webp
+    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — {brand_name}

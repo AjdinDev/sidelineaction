@@ -1,38 +1,48 @@
+---
+import type { SiteSettings } from '../data/content';
+
+interface Props {
+  settings: SiteSettings;
+}
+
+const { settings } = Astro.props;
+---
+
 <footer class="sa-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <div class="footer-brand">
-          <img src="/assets/brand/logo-stacked.svg" alt="Sideline Action" width="300" height="100" />
+          <img src="/assets/brand/logo-stacked.svg" alt={settings.brand_name} width="300" height="100" />
         </div>
-        <p class="footer-tag">Professionele, betaalbare voetbalfotografie voor clubs en individuele spelers in Antwerpen en omgeving.</p>
+        <p class="footer-tag">{settings.footer.tagline}</p>
       </div>
       <div class="footer-col">
-        <h2>Navigatie</h2>
+        <h2>{settings.footer.navigation_heading}</h2>
         <ul>
-          <li><a href="/portfolio">Portfolio</a></li>
-          <li><a href="/diensten">Diensten</a></li>
-          <li><a href="/aanbod">Aanbod</a></li>
-          <li><a href="/over-mij">Over mij</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/boeken">Boek een shoot</a></li>
-          <li><a href="/samenwerking">Samenwerking</a></li>
+          <li><a href="/portfolio">{settings.navigation.portfolio}</a></li>
+          <li><a href="/diensten">{settings.navigation.services}</a></li>
+          <li><a href="/aanbod">{settings.navigation.offer}</a></li>
+          <li><a href="/over-mij">{settings.navigation.about}</a></li>
+          <li><a href="/contact">{settings.navigation.contact}</a></li>
+          <li><a href="/boeken">{settings.navigation.booking}</a></li>
+          <li><a href="/samenwerking">{settings.navigation.collaboration}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h2>Contact</h2>
+        <h2>{settings.footer.contact_heading}</h2>
         <ul>
-          <li><a href="mailto:harunviteskic50@gmail.com">harunviteskic50@gmail.com</a></li>
-          <li><a href="https://instagram.com/sidelineaction" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="https://www.tiktok.com/@sidelineaction" target="_blank" rel="noopener noreferrer">TikTok</a></li>
-          <li style="color:var(--muted);font-size:.9375rem;margin-top:1rem">Harun Viteskic</li>
-          <li style="color:var(--muted-2);font-size:.9375rem">Antwerpen en omgeving</li>
+          <li><a href={`mailto:${settings.contact.email}`}>{settings.contact.email}</a></li>
+          <li><a href={settings.contact.instagram_url} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href={settings.contact.tiktok_url} target="_blank" rel="noopener noreferrer">TikTok</a></li>
+          <li style="color:var(--muted);font-size:.9375rem;margin-top:1rem">{settings.photographer_name}</li>
+          <li style="color:var(--muted-2);font-size:.9375rem">{settings.region}</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; {new Date().getFullYear()} Sideline Action</span>
-      <span><a href="/samenwerking">Samenwerking &amp; afspraken</a></span>
+      <span>&copy; {new Date().getFullYear()} {settings.brand_name}</span>
+      <span><a href="/samenwerking">{settings.footer.collaboration_label}</a></span>
     </div>
   </div>
 </footer>

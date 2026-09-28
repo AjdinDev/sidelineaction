@@ -4,100 +4,676 @@ media:
     input: src/assets/portfolio
     output: ../../assets/portfolio
     extensions: [jpg, jpeg, png, webp]
-    categories: [image]
     rename: random
-    commit:
-      templates:
-        create: "Voeg portfoliofoto {filename} toe"
-        delete: "Verwijder portfoliofoto {filename}"
+  - name: site_images
+    label: Sitebeelden
+    input: public/assets/img/site
+    output: /assets/img/site
+    extensions: [avif, jpg, jpeg, png, webp]
+    rename: random
+
+components:
+  seo:
+    label: SEO
+    type: object
+    required: true
+    fields:
+      - { name: title, label: Paginatitel, type: string, required: true }
+      - { name: description, label: Zoekresultaatbeschrijving, type: text, required: true }
+      - name: image
+        label: Deelafbeelding
+        type: image
+        options: { media: site_images }
+  site_image:
+    label: Afbeelding
+    type: object
+    required: true
+    fields:
+      - name: src
+        label: Bestand
+        type: image
+        required: true
+        options: { media: site_images, extensions: [avif, jpg, jpeg, png, webp] }
+      - name: alt
+        label: Alternatieve tekst
+        type: text
+        required: true
+        description: Beschrijf wat er op de foto te zien is voor bezoekers die de foto niet kunnen zien.
+  page_header:
+    label: Pagina-intro
+    type: object
+    required: true
+    fields:
+      - { name: label, label: Bovenlabel, type: string, required: true }
+      - { name: title, label: Titel, type: string, required: true }
+      - { name: intro, label: Introductie, type: text, required: true }
+  text_item:
+    label: Tekstitem
+    type: object
+    required: true
+    fields:
+      - { name: title, label: Titel, type: string, required: true }
+      - { name: text, label: Tekst, type: text, required: true }
+  fact:
+    label: Kerncijfer
+    type: object
+    required: true
+    fields:
+      - { name: value, label: Waarde, type: string, required: true }
+      - { name: label, label: Uitleg, type: text, required: true }
+  cta:
+    label: Oproep tot actie
+    type: object
+    required: true
+    fields:
+      - { name: label, label: Bovenlabel, type: string, required: true }
+      - { name: title, label: Titel, type: string, required: true }
+      - { name: text, label: Tekst, type: text, required: true }
+      - { name: primary_label, label: Primaire knop, type: string, required: true }
+      - { name: secondary_label, label: Secundaire knop, type: string }
+      - { name: image, component: site_image }
 
 content:
+  - name: shoot_types
+    label: Shoottypes
+    type: collection
+    path: src/content/shoot-types
+    format: yaml
+    filename: { template: "{primary}.yml", field: create }
+    subfolders: false
+    operations: { rename: false }
+    view:
+      fields: [name]
+      primary: name
+      sort: [name]
+      search: [name]
+      default: { sort: name, order: asc }
+    fields:
+      - name: name
+        label: Naam
+        type: string
+        required: true
+        options: { maxlength: 120 }
+
   - name: shoots
     label: Portfolio
     type: collection
     path: src/content/shoots
     format: yaml-frontmatter
-    filename:
-      template: "{primary}.md"
-      field: create
+    filename: { template: "{primary}.md", field: create }
     subfolders: false
-    operations:
-      rename: false
+    operations: { rename: false }
     view:
       fields: [title, type, location, published, order]
       primary: title
       sort: [order, title]
-      search: [title, type, location]
-      default:
-        sort: order
-        order: asc
+      search: [title, location]
+      default: { sort: order, order: asc }
     fields:
       - name: title
         label: Titel
         type: string
         required: true
-        options:
-          maxlength: 120
+        options: { maxlength: 120 }
       - name: type
         label: Type shoot
-        type: string
+        type: reference
         required: true
+        description: Beheer de beschikbare keuzes onder Shoottypes.
         options:
-          maxlength: 120
+          collection: shoot_types
+          search: name
+          value: "{path}"
+          label: "{primary}"
+          placeholder: Kies een shoottype
       - name: location
         label: Locatie
         type: string
         required: true
-        options:
-          maxlength: 160
+        options: { maxlength: 160 }
       - name: date
         label: Datum
         type: date
         default: ""
-        options:
-          format: yyyy-MM-dd
+        options: { format: yyyy-MM-dd }
       - name: intro
         label: Introductie
         type: text
         required: true
-        options:
-          maxlength: 400
-      - name: published
-        label: Gepubliceerd
-        type: boolean
-        default: true
+        options: { maxlength: 400 }
+      - { name: published, label: Gepubliceerd, type: boolean, default: true }
       - name: order
         label: Volgorde
         type: number
         required: true
         default: 0
         description: Een lager nummer verschijnt eerder in het portfolio.
-        options:
-          min: 0
+        options: { min: 0 }
       - name: cover
         label: Coverfoto
         type: image
         required: true
-        options:
-          media: portfolio
-          extensions: [jpg, jpeg, png, webp]
+        options: { media: portfolio, extensions: [jpg, jpeg, png, webp] }
       - name: photos
         label: Galerij
         type: image
         required: true
         options:
           media: portfolio
-          multiple:
-            max: 200
+          multiple: { max: 200 }
           unique: true
           extensions: [jpg, jpeg, png, webp]
 
+  - name: site_content
+    label: Website-inhoud
+    type: group
+    items:
+      - name: site_settings
+        label: Algemene instellingen
+        type: file
+        path: src/content/site/settings.yml
+        format: yaml
+        fields:
+          - { name: brand_name, label: Merknaam, type: string, required: true }
+          - { name: photographer_name, label: Naam fotograaf, type: string, required: true }
+          - name: photographer_age
+            label: Leeftijd fotograaf
+            type: number
+            required: true
+            options: { min: 1, max: 120 }
+          - { name: region, label: Regio kort, type: string, required: true }
+          - { name: region_full, label: Regio volledig, type: string, required: true }
+          - name: contact
+            label: Contact
+            type: object
+            required: true
+            fields:
+              - { name: email, label: E-mailadres, type: string, required: true }
+              - { name: instagram_url, label: Instagram-URL, type: string, required: true }
+              - { name: instagram_handle, label: Instagramnaam, type: string, required: true }
+              - { name: tiktok_url, label: TikTok-URL, type: string, required: true }
+              - { name: tiktok_handle, label: TikTok-naam, type: string, required: true }
+          - name: commitments
+            label: Vaste beloften
+            type: object
+            required: true
+            description: Deze waarden kunnen met tokens zoals {delivery_days} in de paginacontent worden hergebruikt.
+            fields:
+              - name: delivery_days
+                label: Maximale levertijd in dagen
+                type: number
+                required: true
+                options: { min: 1, max: 365 }
+              - name: photo_minimum
+                label: Minimumaantal foto's
+                type: number
+                required: true
+                options: { min: 1 }
+              - { name: photo_range, label: Gebruikelijk fotoaantal, type: string, required: true }
+              - { name: delivery_format, label: Leveringsformaat, type: string, required: true }
+          - name: navigation
+            label: Navigatie
+            type: object
+            required: true
+            fields:
+              - { name: home, label: Home, type: string, required: true }
+              - { name: portfolio, label: Portfolio, type: string, required: true }
+              - { name: services, label: Diensten, type: string, required: true }
+              - { name: offer, label: Aanbod, type: string, required: true }
+              - { name: about, label: Over mij, type: string, required: true }
+              - { name: contact, label: Contact, type: string, required: true }
+              - { name: booking, label: Boeken, type: string, required: true }
+              - { name: collaboration, label: Samenwerking, type: string, required: true }
+              - { name: menu, label: Menuknop, type: string, required: true }
+          - name: footer
+            label: Footer
+            type: object
+            required: true
+            fields:
+              - { name: tagline, label: Introductie, type: text, required: true }
+              - { name: navigation_heading, label: Navigatietitel, type: string, required: true }
+              - { name: contact_heading, label: Contacttitel, type: string, required: true }
+              - { name: collaboration_label, label: Samenwerkingslink, type: string, required: true }
+          - { name: default_og_image, label: Standaard deelafbeelding, component: site_image }
+
+      - name: home_page
+        label: Homepage
+        type: file
+        path: src/content/pages/home.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - name: hero
+            label: Hero
+            type: object
+            required: true
+            fields:
+              - { name: eyebrow, label: Bovenlabel, type: string, required: true }
+              - name: title_lines
+                label: Titelregels
+                type: string
+                required: true
+                list: { min: 1, max: 3, collapsible: false }
+              - { name: subtitle, label: Ondertitel, type: text, required: true }
+              - { name: primary_label, label: Primaire knop, type: string, required: true }
+              - { name: secondary_label, label: Secundaire knop, type: string, required: true }
+              - { name: meta, label: Bijschrift, type: string, required: true }
+              - { name: image, component: site_image }
+          - name: intro
+            label: Introblok
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: lead, label: Inleiding, type: text, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: link_label, label: Linktekst, type: string, required: true }
+              - name: images
+                label: Afbeeldingen
+                component: site_image
+                list:
+                  min: 2
+                  max: 2
+                  collapsible: { collapsed: true, summary: "{alt}" }
+          - name: featured
+            label: Uitgelichte shoot
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - name: shoot
+                label: Shoot
+                type: reference
+                required: true
+                options:
+                  collection: shoots
+                  search: title,type,location
+                  value: "{path}"
+                  label: "{primary}"
+                  placeholder: Kies een portfolio-item
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: link_label, label: Shootlink, type: string, required: true }
+              - { name: portfolio_label, label: Portfoliolink, type: string, required: true }
+              - { name: caption, label: Fotobijschrift, type: string, required: true }
+              - name: images
+                label: Drie uitgelichte foto's
+                type: image
+                required: true
+                description: Kies exact drie foto's die ook in de galerij van de gekozen shoot staan.
+                options:
+                  media: portfolio
+                  multiple: { max: 3 }
+                  unique: true
+                  extensions: [jpg, jpeg, png, webp]
+          - { name: band_image, label: Brede afbeelding, component: site_image }
+          - name: services
+            label: Dienstenblok
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: link_label, label: Linktekst, type: string, required: true }
+              - name: items
+                label: Diensten
+                component: text_item
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{title}" }
+          - name: about
+            label: Over-mijblok
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: lead, label: Inleiding, type: text, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: link_label, label: Linktekst, type: string, required: true }
+              - { name: image, component: site_image }
+          - name: facts
+            label: Kerncijfers
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - name: items
+                label: Kerncijfers
+                component: fact
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{value}" }
+          - name: offer
+            label: Aanbodblok
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: email_label, label: E-maillink, type: string, required: true }
+              - { name: instagram_label, label: Instagramlink, type: string, required: true }
+              - { name: link_label, label: Aanbodlink, type: string, required: true }
+          - { name: booking, component: cta }
+          - name: contact
+            label: Contactblok
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - name: title_lines
+                label: Titelregels
+                type: string
+                required: true
+                list: { min: 1, max: 3, collapsible: false }
+
+      - name: services_page
+        label: Diensten
+        type: file
+        path: src/content/pages/services.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: header, component: page_header }
+          - name: audiences
+            label: Doelgroepen
+            type: object
+            required: true
+            list:
+              min: 1
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: link_label, label: Linktekst, type: string, required: true }
+          - name: gallery
+            label: Dienstenoverzicht
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: intro, label: Introductie, type: text, required: true }
+              - name: items
+                label: Diensten
+                type: object
+                required: true
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{title}" }
+                fields:
+                  - { name: title, label: Titel, type: string, required: true }
+                  - { name: summary, label: Samenvatting, type: text, required: true }
+                  - { name: text, label: Tekst, type: text, required: true }
+                  - { name: image, component: site_image }
+          - name: process
+            label: Werkwijze
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: intro, label: Introductie, type: text, required: true }
+              - name: steps
+                label: Stappen
+                component: text_item
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{title}" }
+          - name: facts
+            label: Kerncijfers
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - name: items
+                label: Kerncijfers
+                component: fact
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{value}" }
+          - { name: cta, component: cta }
+
+      - name: offer_page
+        label: Aanbod en FAQ
+        type: file
+        path: src/content/pages/offer.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: header, component: page_header }
+          - name: overview
+            label: Overzicht
+            type: object
+            required: true
+            fields:
+              - { name: image, component: site_image }
+              - name: items
+                label: Inbegrepen punten
+                type: string
+                required: true
+                list: { min: 1, collapsible: false }
+              - { name: button_label, label: Knoptekst, type: string, required: true }
+          - name: faq
+            label: Veelgestelde vragen
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - name: items
+                label: Vragen en antwoorden
+                component: text_item
+                description: Voeg vragen toe, verwijder ze of sleep ze naar een andere volgorde.
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{title}" }
+          - name: agreements
+            label: Afsprakenblok
+            type: object
+            required: true
+            fields:
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: link_label, label: Linktekst, type: string, required: true }
+          - { name: cta, component: cta }
+
+      - name: about_page
+        label: Over mij
+        type: file
+        path: src/content/pages/about.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: header, component: page_header }
+          - name: story
+            label: Mijn verhaal
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - name: paragraphs
+                label: Alinea's
+                type: text
+                required: true
+                list: { min: 1, collapsible: false }
+              - { name: link_label, label: Linktekst, type: string, required: true }
+              - { name: image, component: site_image }
+          - name: equipment
+            label: Apparatuur
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: intro, label: Introductie, type: text, required: true }
+              - name: items
+                label: Apparatuur
+                type: object
+                required: true
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{name}" }
+                fields:
+                  - { name: name, label: Naam, type: string, required: true }
+                  - { name: description, label: Beschrijving, type: string, required: true }
+          - name: process
+            label: Werkwijze
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: intro, label: Introductie, type: text, required: true }
+              - name: steps
+                label: Stappen
+                component: text_item
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{title}" }
+          - { name: cta, component: cta }
+
+      - name: contact_page
+        label: Contact
+        type: file
+        path: src/content/pages/contact.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: header, component: page_header }
+          - { name: company_label, label: Label bedrijf, type: string, required: true }
+          - { name: photographer_label, label: Label fotograaf, type: string, required: true }
+          - { name: email_label, label: Label e-mail, type: string, required: true }
+          - { name: instagram_label, label: Label Instagram, type: string, required: true }
+          - { name: tiktok_label, label: Label TikTok, type: string, required: true }
+          - { name: region_label, label: Label regio, type: string, required: true }
+          - name: booking_note
+            label: Boekingsblok
+            type: object
+            required: true
+            fields:
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+              - { name: button_label, label: Knoptekst, type: string, required: true }
+          - { name: image, component: site_image }
+
+      - name: booking_page
+        label: Boeken
+        type: file
+        path: src/content/pages/booking.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: header, component: page_header }
+          - name: sidebar
+            label: Zijbalk
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - name: items
+                label: Beloften
+                type: string
+                required: true
+                list: { min: 1, collapsible: false }
+              - { name: direct_email_label, label: E-maillabel, type: string, required: true }
+              - { name: image, component: site_image }
+          - { name: privacy_text, label: Privacytekst onder formulier, type: text, required: true }
+          - { name: submit_label, label: Verzendknop, type: string, required: true }
+
+      - name: collaboration_page
+        label: Samenwerking en afspraken
+        type: file
+        path: src/content/pages/collaboration.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: header, component: page_header }
+          - name: terms
+            label: Afspraken
+            component: text_item
+            list:
+              min: 1
+              collapsible: { collapsed: true, summary: "{title}" }
+          - name: privacy
+            label: Privacy
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: intro, label: Introductie, type: text, required: true }
+              - name: items
+                label: Privacyafspraken
+                type: text
+                required: true
+                list: { min: 1, collapsible: false }
+              - { name: closing, label: Slottekst, type: text, required: true }
+          - { name: cta, component: cta }
+
+      - name: portfolio_page
+        label: Portfolio-pagina
+        type: file
+        path: src/content/pages/portfolio.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: header, component: page_header }
+          - name: empty
+            label: Leeg portfolio
+            type: object
+            required: true
+            fields:
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: text, label: Tekst, type: text, required: true }
+          - name: detail
+            label: Detailpagina-labels
+            type: object
+            required: true
+            fields:
+              - { name: home_label, label: Home, type: string, required: true }
+              - { name: portfolio_label, label: Portfolio, type: string, required: true }
+              - { name: type_label, label: Type, type: string, required: true }
+              - { name: location_label, label: Locatie, type: string, required: true }
+              - { name: date_label, label: Datum, type: string, required: true }
+              - { name: photos_label, label: Foto's, type: string, required: true }
+              - { name: next_label, label: Volgende shoot, type: string, required: true }
+          - { name: cta, component: cta }
+          - { name: detail_cta, label: Oproep op detailpagina, component: cta }
+
+      - name: not_found_page
+        label: 404-pagina
+        type: file
+        path: src/content/pages/not-found.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: label, label: Bovenlabel, type: string, required: true }
+          - { name: title, label: Titel, type: string, required: true }
+          - { name: text, label: Tekst, type: text, required: true }
+          - { name: primary_label, label: Primaire knop, type: string, required: true }
+          - { name: secondary_label, label: Secundaire knop, type: string, required: true }
+
+      - name: thanks_page
+        label: Bedanktpagina
+        type: file
+        path: src/content/pages/thanks.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: label, label: Bovenlabel, type: string, required: true }
+          - { name: title, label: Titel, type: string, required: true }
+          - { name: text, label: Tekst, type: text, required: true }
+          - { name: follow_up_text, label: Opvolgtekst, type: text, required: true }
+          - { name: portfolio_label, label: Portfolioknop, type: string, required: true }
+          - { name: home_label, label: Homeknop, type: string, required: true }
+
 settings:
   hide: true
-  content:
-    merge: false
+  content: { merge: false }
   commit:
     templates:
-      create: "Maak portfolio-item {filename}"
-      update: "Werk portfolio-item {filename} bij"
-      delete: "Verwijder portfolio-item {filename}"
+      create: "Maak {filename}"
+      update: "Werk {filename} bij"
+      delete: "Verwijder {filename}"

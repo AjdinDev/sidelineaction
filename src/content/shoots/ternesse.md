@@ -1,6 +1,6 @@
 ---
 title: Ternesse
-type: Voetbalwedstrijd
+type: src/content/shoot-types/voetbalwedstrijd.yml
 location: Antwerpen en omgeving
 intro: Een volledige wedstrijd, van de opwarming tot het laatste fluitsignaal.
 published: true

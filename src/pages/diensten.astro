@@ -1,33 +1,32 @@
 ---
+import ContentCta from '../components/ContentCta.astro';
+import FactsStrip from '../components/FactsStrip.astro';
+import PageHeader from '../components/PageHeader.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getServicesPage, getSiteSettings, resolveSiteTokens } from '../data/content';
+
+const settings = await getSiteSettings();
+const page = resolveSiteTokens(await getServicesPage(), settings);
 ---
 
-<BaseLayout title="Diensten | Voetbalfotografie voor clubs en spelers — Sideline Action" description="Voetbalfotografie voor volledige clubs en individuele spelers in Antwerpen en omgeving.">
+<BaseLayout title={page.seo.title} description={page.seo.description} image={page.seo.image}>
   <main id="main">
-    <section class="page-head">
-      <div class="wrap">
-        <p class="label label--rule">Diensten</p>
-        <h1 class="page-head__title" data-reveal>Diensten</h1>
-        <p class="lead page-head__lead" data-reveal="fade">Professionele voetbalbeelden voor een volledige club of gericht voor één individuele speler.</p>
-
-      </div>
-    </section>
+    <PageHeader {...page.header} />
 
     <section class="section section--top0">
       <div class="wrap">
         <div class="service-paths">
-          <article class="service-path" data-reveal>
-            <span class="service-path__n">01</span>
-            <h2>Voor clubs</h2>
-            <p>Ik fotografeer de volledige wedstrijd: actie, spelers, duels, teams, fans en sfeer. De beelden zijn geschikt voor sociale media, websites en clubcommunicatie.</p>
-            <a class="link" href="/boeken">Bespreek een wedstrijd<svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a>
-          </article>
-          <article class="service-path" data-reveal style="--reveal-delay:90ms">
-            <span class="service-path__n">02</span>
-            <h2>Voor spelers</h2>
-            <p>Je hoeft niet via een club te boeken. Ik kan één speler tijdens een wedstrijd gericht volgen voor persoonlijke actiefoto's en professionele beelden voor Instagram of andere profielen.</p>
-            <a class="link" href="/boeken">Bespreek een spelersshoot<svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a>
-          </article>
+          {page.audiences.map((audience, index) => (
+            <article class="service-path" data-reveal style={`--reveal-delay:${index * 90}ms`}>
+              <span class="service-path__n">{String(index + 1).padStart(2, '0')}</span>
+              <h2>{audience.title}</h2>
+              <p>{audience.text}</p>
+              <a class="link" href="/boeken">
+                {audience.link_label}
+                <svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg>
+              </a>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -36,65 +35,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="wrap">
         <div class="split split--top" style="margin-bottom:clamp(2.5rem, 2rem + 3vw, 4.5rem)">
           <div>
-            <p class="label label--rule">In beeld</p>
-            <h2 class="h2 mt-2" data-reveal>Wat ik vastleg.</h2>
+            <p class="label label--rule">{page.gallery.label}</p>
+            <h2 class="h2 mt-2" data-reveal>{page.gallery.title}</h2>
           </div>
-          <p class="muted measure" data-reveal="fade">De nadruk ligt op echte wedstrijdmomenten, met ruimte voor zowel het grotere verhaal als één speler in actie.</p>
+          <p class="muted measure" data-reveal="fade">{page.gallery.intro}</p>
         </div>
         <div class="cols cols--2">
-
-          <article data-reveal style="--reveal-delay:0ms">
-            <div data-reveal="mask"><div class="ratio ratio--45 zoom ">
-
-              <img src="/assets/img/site/dienst-actie.webp"
-                   alt="Speler haalt uit naar de bal tijdens een voetbalwedstrijd in Antwerpen" width="900" height="1350"
-                   loading="lazy" decoding="async">
-            </div></div>
-            <div class="mt-3" style="padding-top:1.25rem;border-top:1px solid var(--line)">
-              <h2 class="h3">Actie</h2>
-              <p class="mt-1">Snelle momenten en belangrijke acties op het veld.</p>
-              <p class="muted mt-1" style="font-size:.9688rem">Duels, sprints, schoten en reddingen — de momenten waarop een wedstrijd gemaakt wordt.</p>
-            </div>
-          </article>
-          <article data-reveal style="--reveal-delay:70ms">
-            <div data-reveal="mask"><div class="ratio ratio--34 zoom ">
-
-              <img src="/assets/img/site/dienst-spelers.webp"
-                   alt="Portret van een jeugdspeler tijdens een voetbalwedstrijd in Antwerpen" width="900" height="1196"
-                   loading="lazy" decoding="async">
-            </div></div>
-            <div class="mt-3" style="padding-top:1.25rem;border-top:1px solid var(--line)">
-              <h2 class="h3">Spelers</h2>
-              <p class="mt-1">Individuele spelers en teammomenten.</p>
-              <p class="muted mt-1" style="font-size:.9688rem">Herkenbare beelden van elke speler, plus de momenten waarop het team samenkomt.</p>
-            </div>
-          </article>
-          <article data-reveal style="--reveal-delay:140ms">
-            <div data-reveal="mask"><div class="ratio ratio--45 zoom ">
-
-              <img src="/assets/img/site/dienst-sfeer.webp"
-                   alt="Spelers vieren een moment tijdens een voetbalwedstrijd in Antwerpen" width="900" height="1350"
-                   loading="lazy" decoding="async">
-            </div></div>
-            <div class="mt-3" style="padding-top:1.25rem;border-top:1px solid var(--line)">
-              <h2 class="h3">Sfeer</h2>
-              <p class="mt-1">Fans, emoties en de sfeer rond de wedstrijd.</p>
-              <p class="muted mt-1" style="font-size:.9688rem">Wat er langs de lijn gebeurt hoort net zo goed bij de wedstrijd als wat er op het veld gebeurt.</p>
-            </div>
-          </article>
-          <article data-reveal style="--reveal-delay:210ms">
-            <div data-reveal="mask"><div class="ratio ratio--34 zoom ">
-
-              <img src="/assets/img/site/dienst-momenten.webp"
-                   alt="Het team verzamelt tijdens een voetbalwedstrijd in Antwerpen" width="900" height="1350"
-                   loading="lazy" decoding="async">
-            </div></div>
-            <div class="mt-3" style="padding-top:1.25rem;border-top:1px solid var(--line)">
-              <h2 class="h3">Wedstrijdmomenten</h2>
-              <p class="mt-1">Belangrijke momenten tijdens de wedstrijd.</p>
-              <p class="muted mt-1" style="font-size:.9688rem">De aftrap, de bespreking van de coach, het doelpunt en het moment erna.</p>
-            </div>
-          </article>
+          {page.gallery.items.map((item, index) => (
+            <article data-reveal style={`--reveal-delay:${index * 70}ms`}>
+              <div data-reveal="mask">
+                <div class={`ratio ${index % 2 === 0 ? 'ratio--45' : 'ratio--34'} zoom`}>
+                  <img src={item.image.src} alt={item.image.alt} width="900" height="1350" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="mt-3" style="padding-top:1.25rem;border-top:1px solid var(--line)">
+                <h2 class="h3">{item.title}</h2>
+                <p class="mt-1">{item.summary}</p>
+                <p class="muted mt-1" style="font-size:.9688rem">{item.text}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -103,83 +63,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="wrap">
         <div class="split split--top" style="margin-bottom:clamp(2.5rem, 2rem + 3vw, 4.5rem)">
           <div>
-            <p class="label label--rule">Mijn aanpak</p>
-            <h2 class="h2 mt-2" data-reveal>Van aftrap tot levering.</h2>
+            <p class="label label--rule">{page.process.label}</p>
+            <h2 class="h2 mt-2" data-reveal>{page.process.title}</h2>
           </div>
-          <div data-reveal="fade">
-            <p class="muted measure">Tijdens iedere wedstrijd probeer ik zoveel mogelijk momenten vast te leggen. Van snelle acties op het veld tot de sfeer langs de zijlijn. Daarna selecteer ik de sterkste beelden en werk ik die af.</p>
-          </div>
+          <div data-reveal="fade"><p class="muted measure">{page.process.intro}</p></div>
         </div>
         <div class="index">
-
-          <div class="index__row" data-reveal>
-            <span class="index__n">01</span>
-            <h3 class="index__title">Afspraak vooraf</h3>
-            <p class="index__text">We spreken de wedstrijd en de afspraken kort door en zetten die op papier. Zo weet iedereen vooraf waar hij aan toe is.</p>
-          </div>
-          <div class="index__row" data-reveal>
-            <span class="index__n">02</span>
-            <h3 class="index__title">Tijdens de wedstrijd</h3>
-            <p class="index__text">Ik sta langs de lijn en fotografeer de volledige wedstrijd: actie, spelers, sfeer en de belangrijke momenten.</p>
-          </div>
-          <div class="index__row" data-reveal>
-            <span class="index__n">03</span>
-            <h3 class="index__title">Selectie en bewerking</h3>
-            <p class="index__text">Na de wedstrijd bekijk ik alle beelden, kies ik de sterkste en bewerk ik die zorgvuldig in mijn bestaande stijl.</p>
-          </div>
-          <div class="index__row" data-reveal>
-            <span class="index__n">04</span>
-            <h3 class="index__title">Levering binnen 5 dagen</h3>
-            <p class="index__text">Bij een volledige wedstrijdreportage ontvangt de club 100-150 professioneel bewerkte foto's, digitaal en in volledige resolutie. Bij een spelersshoot spreken we de selectie vooraf af.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section section--half">
-      <div class="wrap">
-        <p class="label label--rule">Bij een volledige wedstrijd</p>
-        <div class="facts mt-4" data-reveal>
-          <div>
-            <div class="num">100&ndash;150</div>
-            <p class="fact-label">Professioneel bewerkte foto's per wedstrijd. Minimaal 100.</p>
-          </div>
-          <div>
-            <div class="num">5</div>
-            <p class="fact-label">Dagen maximaal tussen de wedstrijd en de levering.</p>
-          </div>
-          <div>
-            <div class="num">Digitaal</div>
-            <p class="fact-label">Geleverd in volledige resolutie, meteen bruikbaar voor de clubkanalen.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="wrap">
-        <div class="split split--top">
-          <div>
-            <p class="label label--rule">Boeken</p>
-            <h2 class="h2 mt-2" data-reveal>Laat je wedstrijd of speler vastleggen.</h2>
-            <p class="muted mt-3 measure" data-reveal="fade">Vul het korte formulier in met de datum en de locatie. Ik neem zo snel mogelijk contact op.</p>
-            <div class="btn-row mt-4" data-reveal>
-              <a class="btn btn--solid" href="/boeken"><span>Boek een shoot</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a>
-              <a class="link " href="/aanbod">Bekijk het aanbod<svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a>
+          {page.process.steps.map((step, index) => (
+            <div class="index__row" data-reveal>
+              <span class="index__n">{String(index + 1).padStart(2, '0')}</span>
+              <h3 class="index__title">{step.title}</h3>
+              <p class="index__text">{step.text}</p>
             </div>
-          </div>
-          <div data-reveal="mask">
-            <div class="ratio ratio--45 zoom ">
-
-              <img src="/assets/img/site/band-cta.webp"
-                   alt="Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — Sideline Action" width="900" height="1350"
-                   loading="lazy" decoding="async">
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
+
+    <FactsStrip {...page.facts} />
+    <ContentCta content={page.cta} />
   </main>
 </BaseLayout>

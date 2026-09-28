@@ -1,0 +1,49 @@
+seo:
+  title: Aanbod en prijs | {brand_name} — Voetbalfotografie
+  description: Ontdek wat inbegrepen is bij een wedstrijdreportage of individuele spelersshoot.
+header:
+  label: Aanbod
+  title: Betaalbare sportfotografie
+  intro: Voor clubs en individuele spelers. Prijzen zijn bespreekbaar en afhankelijk van de opdracht.
+overview:
+  image:
+    src: /assets/img/site/aanbod.webp
+    alt: Speler trapt de bal vanaf de hoekschopstip tijdens een voetbalwedstrijd in Antwerpen
+  items:
+    - Volledige wedstrijdreportage voor clubs of gerichte fotografie van één speler
+    - Professioneel bewerkt, in mijn eigen vaste stijl
+    - Digitale levering in volledige resolutie
+    - Binnen maximaal {delivery_days} dagen na de wedstrijd
+    - Actie, spelers, sfeer en wedstrijdmomenten
+    - Bruikbaar voor social media, websites en persoonlijke sportprofielen
+  button_label: Vraag een voorstel
+faq:
+  label: Praktisch
+  items:
+    - title: Wat kost het?
+      text: Mijn tarieven liggen bewust lager dan bij veel professionele sportfotografen. Prijzen zijn bespreekbaar en afhankelijk van de opdracht. Er staan daarom geen vaste bedragen op de website.
+    - title: Hoe vraag ik een prijs?
+      text: Benieuwd naar de prijs voor jouw wedstrijd of opdracht? Stuur een mailtje naar {email} of neem contact op via Instagram {instagram_handle}.
+    - title: Wanneer wordt er betaald?
+      text: "Dat spreken we vooraf af: een voorschot bij het vastleggen van de wedstrijd en het saldo na levering van de foto's."
+    - title: Hoeveel foto's krijg je?
+      text: Bij een volledige wedstrijdreportage ontvangt de club minimaal {photo_minimum}, meestal {photo_range} professioneel bewerkte foto's. Voor een individuele spelersshoot spreken we de selectie vooraf af.
+    - title: Hoe snel zijn ze er?
+      text: Binnen maximaal {delivery_days} dagen na de wedstrijd. Meestal sneller.
+    - title: Voor wie is dit?
+      text: Voor clubs, teams en individuele spelers van elke leeftijdscategorie en elk niveau, van jeugd tot eerste ploeg.
+    - title: Wat bij afgelasting?
+      text: Wordt de wedstrijd afgelast of verplaatst, dan zoeken we samen een nieuwe datum.
+agreements:
+  title: Afspraken vooraf
+  text: "Vóór elke opdracht leggen we kort schriftelijk vast wat we afspreken: de wedstrijd of spelersshoot, de prijs, de betaling, de levering en het gebruik van de foto's."
+  link_label: Bekijk de afspraken
+cta:
+  label: Contact
+  title: Een wedstrijd of speler vastleggen?
+  text: Vul het formulier in met de datum en de locatie. Ik neem zo snel mogelijk contact op met een voorstel op maat.
+  primary_label: Vraag een voorstel
+  secondary_label: Bekijk het aanbod
+  image:
+    src: /assets/img/site/band-cta.webp
+    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — {brand_name}

@@ -3,6 +3,7 @@ import Lightbox from '../components/Lightbox.astro';
 import Loader from '../components/Loader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { getSiteSettings, resolveSiteTokens } from '../data/content';
 import '../styles/global.css';
 
 interface Props {
@@ -12,12 +13,10 @@ interface Props {
   noindex?: boolean;
 }
 
-const {
-  title,
-  description,
-  image = '/assets/img/site/hero.webp',
-  noindex = false,
-} = Astro.props;
+const rawSettings = await getSiteSettings();
+const settings = resolveSiteTokens(rawSettings, rawSettings);
+const { title, description, noindex = false } = Astro.props;
+const image = Astro.props.image || settings.default_og_image.src;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
@@ -30,7 +29,7 @@ const socialImage = new URL(image, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="Harun Viteskic" />
+    <meta name="author" content={settings.photographer_name} />
     <meta name="theme-color" content="#FCFBF9" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
@@ -40,7 +39,7 @@ const socialImage = new URL(image, Astro.site);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_BE" />
-    <meta property="og:site_name" content="Sideline Action" />
+    <meta property="og:site_name" content={settings.brand_name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -53,9 +52,9 @@ const socialImage = new URL(image, Astro.site);
   <body>
     <a class="skip-link" href="#main">Naar de inhoud</a>
     <Loader />
-    <SiteHeader currentPath={Astro.url.pathname} />
+    <SiteHeader currentPath={Astro.url.pathname} settings={settings} />
     <slot />
-    <SiteFooter />
+    <SiteFooter settings={settings} />
     <Lightbox />
     <script src="../scripts/site.ts"></script>
     <script src="../scripts/lightbox.ts"></script>

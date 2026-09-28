@@ -1,0 +1,27 @@
+---
+interface Fact {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  label: string;
+  items: Fact[];
+}
+
+const { label, items } = Astro.props;
+---
+
+<section class="section section--half">
+  <div class="wrap">
+    <p class="label label--rule">{label}</p>
+    <div class="facts mt-4" data-reveal>
+      {items.map((item) => (
+        <div>
+          <div class="num">{item.value}</div>
+          <p class="fact-label">{item.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

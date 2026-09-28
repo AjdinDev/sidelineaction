@@ -1,0 +1,34 @@
+brand_name: Sideline Action
+photographer_name: Harun Viteskic
+photographer_age: 13
+region: Antwerpen en omgeving
+region_full: Antwerpen en omgeving, België
+contact:
+  email: harunviteskic50@gmail.com
+  instagram_url: https://instagram.com/sidelineaction
+  instagram_handle: "@sidelineaction"
+  tiktok_url: https://www.tiktok.com/@sidelineaction
+  tiktok_handle: "@sidelineaction"
+commitments:
+  delivery_days: 5
+  photo_minimum: 100
+  photo_range: 100–150
+  delivery_format: Digitaal
+navigation:
+  home: Home
+  portfolio: Portfolio
+  services: Diensten
+  offer: Aanbod
+  about: Over mij
+  contact: Contact
+  booking: Boek een shoot
+  collaboration: Samenwerking
+  menu: Menu
+footer:
+  tagline: Professionele, betaalbare voetbalfotografie voor clubs en individuele spelers in {region}.
+  navigation_heading: Navigatie
+  contact_heading: Contact
+  collaboration_label: Samenwerking & afspraken
+default_og_image:
+  src: /assets/img/site/hero.webp
+  alt: Voetballer in een geel shirt dribbelt met de bal — foto door {photographer_name} voor {brand_name}

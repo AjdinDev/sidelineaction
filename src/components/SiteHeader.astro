@@ -1,15 +1,18 @@
 ---
+import type { SiteSettings } from '../data/content';
+
 interface Props {
   currentPath: string;
+  settings: SiteSettings;
 }
 
-const { currentPath } = Astro.props;
+const { currentPath, settings } = Astro.props;
 const navItems = [
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/diensten', label: 'Diensten' },
-  { href: '/aanbod', label: 'Aanbod' },
-  { href: '/over-mij', label: 'Over mij' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/portfolio', label: settings.navigation.portfolio },
+  { href: '/diensten', label: settings.navigation.services },
+  { href: '/aanbod', label: settings.navigation.offer },
+  { href: '/over-mij', label: settings.navigation.about },
+  { href: '/contact', label: settings.navigation.contact },
 ] as const;
 
 const isCurrent = (href: string) =>
@@ -22,19 +25,19 @@ const isCurrent = (href: string) =>
       {navItems.map(({ href, label }) => (
         <a class="nav-link" href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
       ))}
-      <a class="nav-link nav-link--cta" href="/boeken" aria-current={isCurrent('/boeken') ? 'page' : undefined}>Boek een shoot</a>
+      <a class="nav-link nav-link--cta" href="/boeken" aria-current={isCurrent('/boeken') ? 'page' : undefined}>{settings.navigation.booking}</a>
     </nav>
 
     <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
-      <span>Menu</span>
+      <span>{settings.navigation.menu}</span>
       <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span></span>
     </button>
 
-    <a class="sa-brand" href="/" aria-label="Sideline Action — naar de homepage">
+    <a class="sa-brand" href="/" aria-label={`${settings.brand_name} — naar de homepage`}>
       <span class="sa-logo">
         <img class="sa-logo__ink" src="/assets/brand/logo-wordmark.svg" alt="" width="1445" height="100" />
         <img class="sa-logo__light" src="/assets/brand/logo-wordmark-light.svg" alt="" width="1445" height="100" />
-        <span class="visually-hidden">Sideline Action</span>
+        <span class="visually-hidden">{settings.brand_name}</span>
       </span>
     </a>
   </div>
@@ -42,14 +45,14 @@ const isCurrent = (href: string) =>
 
 <div class="mobile-menu" id="mobile-menu" hidden>
   <nav class="mobile-menu__list" aria-label="Mobiele navigatie">
-    <a href="/" aria-current={isCurrent('/') ? 'page' : undefined} style="transition-delay:40ms">Home</a>
+    <a href="/" aria-current={isCurrent('/') ? 'page' : undefined} style="transition-delay:40ms">{settings.navigation.home}</a>
     {navItems.map(({ href, label }, index) => (
       <a href={href} aria-current={isCurrent(href) ? 'page' : undefined} style={`transition-delay:${80 + index * 45}ms`}>{label}</a>
     ))}
-    <a href="/boeken" aria-current={isCurrent('/boeken') ? 'page' : undefined} style="transition-delay:305ms">Boek een shoot</a>
+    <a href="/boeken" aria-current={isCurrent('/boeken') ? 'page' : undefined} style="transition-delay:305ms">{settings.navigation.booking}</a>
   </nav>
   <div class="mobile-menu__foot">
-    <a href="mailto:harunviteskic50@gmail.com">harunviteskic50@gmail.com</a>
-    <a href="https://instagram.com/sidelineaction" target="_blank" rel="noopener noreferrer">Instagram — @sidelineaction</a>
+    <a href={`mailto:${settings.contact.email}`}>{settings.contact.email}</a>
+    <a href={settings.contact.instagram_url} target="_blank" rel="noopener noreferrer">Instagram — {settings.contact.instagram_handle}</a>
   </div>
 </div>

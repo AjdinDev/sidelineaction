@@ -1,43 +1,36 @@
 ---
+import PageHeader from '../components/PageHeader.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContactPage, getSiteSettings, resolveSiteTokens } from '../data/content';
+
+const settings = await getSiteSettings();
+const page = resolveSiteTokens(await getContactPage(), settings);
 ---
 
-<BaseLayout title="Contact | Sideline Action — Sportfotograaf Antwerpen" description="Neem contact op met Sideline Action voor voetbalfotografie in Antwerpen en omgeving.">
+<BaseLayout title={page.seo.title} description={page.seo.description} image={page.seo.image}>
   <main id="main">
-    <section class="page-head">
-      <div class="wrap">
-        <p class="label label--rule">Contact</p>
-        <h1 class="page-head__title" data-reveal>Contact</h1>
-        <p class="lead page-head__lead" data-reveal="fade">Een vraag over clubfotografie, een individuele spelersshoot, het aanbod of de afspraken? Stuur gerust een bericht.</p>
-
-      </div>
-    </section>
+    <PageHeader {...page.header} />
 
     <section class="section section--top0">
       <div class="wrap">
         <div class="split split--top">
           <div>
             <ul class="contact-list" data-reveal="fade">
-              <li><span class="row"><span class="k">Bedrijf</span><span class="v">Sideline Action</span><span></span></span></li>
-              <li><span class="row"><span class="k">Fotograaf</span><span class="v">Harun Viteskic</span><span></span></span></li>
-              <li><a href="mailto:harunviteskic50@gmail.com"><span class="k">E-mail</span><span class="v">harunviteskic50@gmail.com</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a></li>
-              <li><a href="https://instagram.com/sidelineaction" target="_blank" rel="noopener noreferrer"><span class="k">Instagram</span><span class="v">@sidelineaction</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a></li>
-              <li><a href="https://www.tiktok.com/@sidelineaction" target="_blank" rel="noopener noreferrer"><span class="k">TikTok</span><span class="v">@sidelineaction</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a></li>
-              <li><span class="row"><span class="k">Regio</span><span class="v">Antwerpen en omgeving, België</span><span></span></span></li>
+              <li><span class="row"><span class="k">{page.company_label}</span><span class="v">{settings.brand_name}</span><span></span></span></li>
+              <li><span class="row"><span class="k">{page.photographer_label}</span><span class="v">{settings.photographer_name}</span><span></span></span></li>
+              <li><a href={`mailto:${settings.contact.email}`}><span class="k">{page.email_label}</span><span class="v">{settings.contact.email}</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg></a></li>
+              <li><a href={settings.contact.instagram_url} target="_blank" rel="noopener noreferrer"><span class="k">{page.instagram_label}</span><span class="v">{settings.contact.instagram_handle}</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg></a></li>
+              <li><a href={settings.contact.tiktok_url} target="_blank" rel="noopener noreferrer"><span class="k">{page.tiktok_label}</span><span class="v">{settings.contact.tiktok_handle}</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg></a></li>
+              <li><span class="row"><span class="k">{page.region_label}</span><span class="v">{settings.region_full}</span><span></span></span></li>
             </ul>
             <div class="note mt-5" data-reveal="fade">
-              <h2>Een wedstrijd of spelersshoot boeken?</h2>
-              <p>Gebruik het boekingsformulier. Dan heb ik meteen de gegevens die ik nodig heb: soort opdracht, datum, uur en locatie.</p>
-              <div class="btn-row mt-3"><a class="btn btn--solid" href="/boeken"><span>Boek een shoot</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2"/></svg></a></div>
+              <h2>{page.booking_note.title}</h2>
+              <p>{page.booking_note.text}</p>
+              <div class="btn-row mt-3"><a class="btn btn--solid" href="/boeken"><span>{page.booking_note.button_label}</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg></a></div>
             </div>
           </div>
           <div data-reveal="mask">
-            <div class="ratio ratio--45  ">
-
-              <img src="/assets/img/site/contact.webp"
-                   alt="Spelers in duel om de bal langs de zijlijn — Sideline Action, sportfotografie Antwerpen" width="900" height="1350"
-                   loading="lazy" decoding="async">
-            </div>
+            <div class="ratio ratio--45"><img src={page.image.src} alt={page.image.alt} width="900" height="1350" loading="lazy" decoding="async" /></div>
           </div>
         </div>
       </div>

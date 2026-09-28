@@ -1,0 +1,56 @@
+---
+interface ContentImage {
+  src: string;
+  alt: string;
+}
+
+interface Content {
+  label: string;
+  title: string;
+  text: string;
+  primary_label: string;
+  secondary_label?: string;
+  image: ContentImage;
+}
+
+interface Props {
+  content: Content;
+  primaryHref?: string;
+  secondaryHref?: string;
+}
+
+const {
+  content,
+  primaryHref = '/boeken',
+  secondaryHref = '/aanbod',
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="wrap">
+    <div class="split split--top">
+      <div>
+        <p class="label label--rule">{content.label}</p>
+        <h2 class="h2 mt-2" data-reveal>{content.title}</h2>
+        <p class="muted mt-3 measure" data-reveal="fade">{content.text}</p>
+        <div class="btn-row mt-4" data-reveal>
+          <a class="btn btn--solid" href={primaryHref}>
+            <span>{content.primary_label}</span>
+            <svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg>
+          </a>
+          {content.secondary_label && (
+            <a class="link" href={secondaryHref}>
+              {content.secondary_label}
+              <svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg>
+            </a>
+          )}
+        </div>
+      </div>
+      <div data-reveal="mask">
+        <div class="ratio ratio--45 zoom">
+          <img src={content.image.src} alt={content.image.alt} width="900" height="1350" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
