@@ -1,6 +1,6 @@
 ---
 title: Andere wedstrijden
-type: Voetbalwedstrijden
+type: Voetbalwedstrijd
 location: Antwerpen en omgeving
 intro: Een selectie van actie, spelers en momenten uit andere wedstrijden.
 published: true
