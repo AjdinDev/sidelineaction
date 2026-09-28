@@ -12,29 +12,45 @@ interface Booking {
   extra: string;
 }
 
-function jsonResponse(message: string, status: number): Response {
+function jsonResponse(message: string, status: number, headers?: HeadersInit): Response {
   return Response.json({ message }, {
     status,
-    headers: { 'Cache-Control': 'no-store' },
+    headers: {
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff',
+      ...headers,
+    },
   });
 }
 
-function respond(request: Request, message: string, status: number): Response {
-  if (request.headers.get('Accept')?.includes('application/json')) {
-    return jsonResponse(message, status);
-  }
-
-  if (status >= 200 && status < 300) {
-    return Response.redirect(new URL('/bedankt', request.url), 303);
-  }
-
+function textResponse(message: string, status: number, headers?: HeadersInit): Response {
   return new Response(message, {
     status,
     headers: {
       'Cache-Control': 'no-store',
       'Content-Type': 'text/plain; charset=utf-8',
+      'X-Content-Type-Options': 'nosniff',
+      ...headers,
     },
   });
+}
+
+function respond(request: Request, message: string, status: number, headers?: HeadersInit): Response {
+  if (request.headers.get('Accept')?.includes('application/json')) {
+    return jsonResponse(message, status, headers);
+  }
+
+  if (status >= 200 && status < 300) {
+    return new Response(null, {
+      status: 303,
+      headers: {
+        'Cache-Control': 'no-store',
+        Location: new URL('/bedankt', request.url).toString(),
+      },
+    });
+  }
+
+  return textResponse(message, status, headers);
 }
 
 function textField(formData: FormData, name: string): string {
@@ -152,8 +168,35 @@ function emailHtml(booking: Booking): string {
   return `<h1>Nieuwe boekingsaanvraag</h1><p>Er is een nieuwe aanvraag verstuurd via sidelineaction.be.</p><table>${tableRows}</table>`;
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const request = context.request;
+async function readBodyWithLimit(request: Request): Promise<ArrayBuffer | null> {
+  if (!request.body) return new ArrayBuffer(0);
+
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    totalBytes += value.byteLength;
+    if (totalBytes > MAX_BODY_BYTES) {
+      await reader.cancel('Booking request body is too large.');
+      return null;
+    }
+    chunks.push(value);
+  }
+
+  const body = new Uint8Array(new ArrayBuffer(totalBytes));
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return body.buffer;
+}
+
+async function handleBooking(request: Request, env: Env): Promise<Response> {
   const requestId = crypto.randomUUID();
   const requestUrl = new URL(request.url);
   const origin = request.headers.get('Origin');
@@ -174,10 +217,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   let formData: FormData;
   try {
-    const body = await request.arrayBuffer();
-    if (body.byteLength > MAX_BODY_BYTES) {
-      return respond(request, 'De aanvraag is te groot.', 413);
-    }
+    const body = await readBodyWithLimit(request);
+    if (!body) return respond(request, 'De aanvraag is te groot.', 413);
+
     formData = await new Request(request.url, {
       method: 'POST',
       headers: request.headers,
@@ -196,10 +238,10 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   if (validationError) return respond(request, validationError, 400);
 
   try {
-    const result = await context.env.BOOKING_EMAIL.send({
-      to: context.env.BOOKING_TO_EMAIL,
+    const result = await env.BOOKING_EMAIL.send({
+      to: env.BOOKING_TO_EMAIL,
       from: {
-        email: context.env.BOOKING_FROM_EMAIL,
+        email: env.BOOKING_FROM_EMAIL,
         name: 'Sideline Action website',
       },
       replyTo: booking.email,
@@ -226,9 +268,19 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     }));
     return respond(request, 'De aanvraag kon niet worden verzonden.', 503);
   }
-};
+}
 
-export const onRequestGet: PagesFunction<Env> = () => new Response(null, {
-  status: 405,
-  headers: { Allow: 'POST' },
-});
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+    if (url.pathname !== '/api/booking') {
+      return respond(request, 'Niet gevonden.', 404);
+    }
+
+    if (request.method !== 'POST') {
+      return respond(request, 'Alleen POST-aanvragen zijn toegestaan.', 405, { Allow: 'POST' });
+    }
+
+    return handleBooking(request, env);
+  },
+} satisfies ExportedHandler<Env>;

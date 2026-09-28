@@ -7,11 +7,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check && tsc --project functions/tsconfig.json",
-    "cf:types": "wrangler types functions/worker-configuration.d.ts",
-    "cf:types:check": "wrangler types functions/worker-configuration.d.ts --check",
-    "cf:dev": "npm run build && wrangler pages dev dist",
-    "cf:deploy": "npm run build && wrangler pages deploy dist"
+    "check": "astro check && tsc --project worker/tsconfig.json",
+    "cf:types": "wrangler types worker/worker-configuration.d.ts --include-runtime=false",
+    "cf:types:check": "wrangler types worker/worker-configuration.d.ts --include-runtime=false --check",
+    "cf:dev": "npm run build && wrangler dev",
+    "cf:deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@cloudflare/workers-types": "^5.20260928.1",
     "typescript": "^6.0.3",
     "wrangler": "^4.142.0"
   }

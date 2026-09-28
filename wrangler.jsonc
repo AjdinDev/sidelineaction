@@ -1,8 +1,17 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "sidelineaction",
-  "pages_build_output_dir": "./dist",
+  "main": "./worker/index.ts",
   "compatibility_date": "2026-09-28",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
   "vars": {
     "BOOKING_FROM_EMAIL": "website@sidelineaction.be",
     "BOOKING_TO_EMAIL": "harunviteskic50@gmail.com"
@@ -13,5 +22,16 @@
       "destination_address": "harunviteskic50@gmail.com",
       "allowed_sender_addresses": ["website@sidelineaction.be"]
     }
-  ]
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01
+    }
+  }
 }

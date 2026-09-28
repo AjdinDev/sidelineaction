@@ -1,6 +1,6 @@
 # Sideline Action
 
-Static Astro website for [sidelineaction.be](https://sidelineaction.be), configured for deployment on Cloudflare Pages. The booking form is handled by a Cloudflare Pages Function and sends a transactional notification through Cloudflare Email Service once the domain and email binding are onboarded.
+Static Astro website for [sidelineaction.be](https://sidelineaction.be), deployed with Cloudflare Workers Static Assets. A selectively routed Worker handles the booking API and sends a transactional notification through Cloudflare Email Service once the domain and email binding are onboarded.
 
 ## Local development
 
@@ -19,22 +19,22 @@ npm run build
 npm run cf:types:check
 ```
 
-`npm run preview` previews the static Astro output. `npm run cf:dev` builds the site and starts the Pages runtime so the Function routes are included. Wrangler simulates the email binding by default and saves the generated message locally; it does not send a real email unless the binding is deliberately changed to remote mode.
+`npm run preview` previews only the static Astro output. `npm run cf:dev` builds the site and starts the complete Workers runtime, including the `/api/booking` route. A successful end-to-end email send still requires an onboarded sender domain and a configured Email Service destination.
 
-## Cloudflare Pages
+## Cloudflare Workers
 
-For Git integration, connect this repository in **Workers & Pages → Create → Pages → Import an existing Git repository** and use:
+For Workers Builds Git integration, connect this repository to the `sidelineaction` Worker and use:
 
 - Production branch: `main`
 - Build command: `npm run build`
-- Build output directory: `dist`
+- Deploy command: `npx wrangler deploy`
 - Root directory: repository root
 
-The repository's `wrangler.jsonc` is the Pages configuration source of truth. It defines the static output directory and the `BOOKING_EMAIL` binding used by `functions/api/booking.ts`.
+The repository's `wrangler.jsonc` is the Worker configuration source of truth. It uploads `dist` as static assets, sends only `/api/*` requests through `worker/index.ts`, keeps the `workers.dev` and preview URLs disabled, and defines the `BOOKING_EMAIL` binding.
 
 Before the booking form can send mail:
 
-1. Add `sidelineaction.be` to Cloudflare and attach it as the Pages custom domain.
+1. Add `sidelineaction.be` to Cloudflare and attach it as the Worker's custom domain.
 2. Onboard `sidelineaction.be` in **Compute → Email Service → Email Sending**, or run `npx wrangler email sending enable sidelineaction.be` after authenticating.
 3. Verify `harunviteskic50@gmail.com` as an allowed destination if Cloudflare requests destination verification.
 4. Confirm that `website@sidelineaction.be` is accepted as the sender and that the SPF/DKIM records created by Email Service are active.
@@ -50,7 +50,7 @@ Once Cloudflare authentication and Email Service are configured:
 npm run cf:deploy
 ```
 
-This command builds and deploys `dist` to the Pages project named `sidelineaction`. It is not required when Git integration is enabled.
+This command builds and deploys the Worker and its `dist` assets together. It is not required when Workers Builds Git integration is enabled.
 
 ## Content structure
 
@@ -59,6 +59,6 @@ This command builds and deploys `dist` to the Pages project named `sidelineactio
 - `src/components/` — shared header, footer, loader, and lightbox
 - `src/data/shoots.ts` — portfolio metadata and photo manifests
 - `src/scripts/` — progressively enhanced menu, gallery, and form behavior
-- `functions/api/booking.ts` — validated Pages Function for booking notifications
+- `worker/index.ts` — validated Worker route for booking notifications
 - `public/assets/` — extracted, cacheable brand and photography assets
-- `public/_headers` — Cloudflare Pages security and cache headers
+- `public/_headers` — Cloudflare Workers Static Assets security and cache headers

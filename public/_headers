@@ -10,5 +10,5 @@
 /assets/*
   Cache-Control: public, max-age=604800
 
-https://sidelineaction.pages.dev/*
+https://:worker.:subdomain.workers.dev/*
   X-Robots-Tag: noindex
