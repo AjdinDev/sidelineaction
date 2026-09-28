@@ -22,6 +22,7 @@ import { formatShootDate, photoAlt, photoUrl, publishedShoots } from '../data/sh
           <div class="work work--2">
             {publishedShoots.map((shoot, index) => {
               const cover = shoot.photos.find((photo) => photo.name === shoot.cover) ?? shoot.photos[0];
+              const coverIndex = shoot.photos.indexOf(cover);
               const date = formatShootDate(shoot.date);
               const meta = [shoot.type, shoot.location, date].filter(Boolean).join(' · ');
               return (
@@ -33,7 +34,7 @@ import { formatShootDate, photoAlt, photoUrl, publishedShoots } from '../data/sh
                       decoding="async"
                       width={cover.width}
                       height={cover.height}
-                      alt={photoAlt(shoot, 0)}
+                      alt={photoAlt(shoot, coverIndex)}
                     />
                   </div>
                   <div class="work-card__foot">

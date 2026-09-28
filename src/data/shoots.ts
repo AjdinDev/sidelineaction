@@ -59,6 +59,32 @@ const ternessePhotos: Photo[] = [
   height: Number(height),
 }));
 
+const otherMatchesPhotos: Photo[] = [
+  ['img-0298', 900, 1350],
+  ['img-0633', 900, 1350],
+  ['img-6584', 900, 985],
+  ['img-6585', 900, 1135],
+  ['img-6586', 900, 1350],
+  ['img-6587', 900, 1350],
+  ['img-6588', 900, 1350],
+  ['img-6589', 900, 600],
+  ['img-6590', 900, 1350],
+  ['img-6591', 900, 1350],
+  ['img-6592', 900, 1350],
+  ['img-6593', 900, 1350],
+  ['img-6594', 900, 1350],
+  ['img-6595', 900, 1350],
+  ['img-6596', 900, 1350],
+  ['img-6597', 900, 1350],
+  ['img-6598', 900, 1350],
+  ['img-6599', 900, 1350],
+  ['img-6601', 900, 1350],
+].map(([name, width, height]) => ({
+  name: String(name),
+  width: Number(width),
+  height: Number(height),
+}));
+
 export const shoots: Shoot[] = [
   {
     slug: 'ternesse',
@@ -68,6 +94,15 @@ export const shoots: Shoot[] = [
     cover: 'ternesse-002',
     intro: 'Een volledige wedstrijd, van de opwarming tot het laatste fluitsignaal.',
     photos: ternessePhotos,
+  },
+  {
+    slug: 'andere-wedstrijden',
+    title: 'Andere wedstrijden',
+    type: 'Voetbalwedstrijden',
+    location: 'Antwerpen en omgeving',
+    cover: 'img-6584',
+    intro: 'Een selectie van actie, spelers en momenten uit andere wedstrijden.',
+    photos: otherMatchesPhotos,
   },
 ];
 
