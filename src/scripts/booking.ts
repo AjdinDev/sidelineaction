@@ -54,7 +54,7 @@ if (bookingForm) {
     const validationResults = requiredInputs.map((input) => ({ input, valid: validate(input) }));
     const firstInvalid = validationResults.find(({ valid }) => !valid)?.input;
     if (firstInvalid) {
-      setStatus('err', 'Enkele velden zijn nog niet correct ingevuld. Kijk de aangeduide velden na.');
+      setStatus('err', 'Controleer de aangeduide velden en probeer opnieuw.');
       firstInvalid.focus();
       return;
     }

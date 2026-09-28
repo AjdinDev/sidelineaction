@@ -1,20 +1,20 @@
 seo:
   title: Boek voetbalfotografie | {brand_name}
-  description: Vraag een wedstrijdreportage of individuele spelersshoot aan bij {brand_name}.
+  description: Vraag een wedstrijdreportage of spelersshoot aan bij {brand_name}.
 header:
   label: Boeken
   title: Boek een shoot
-  intro: Voor een volledige clubwedstrijd of één individuele speler. Vul het korte formulier in en ik neem zo snel mogelijk contact met je op.
+  intro: Boek een volledige wedstrijdreportage of laat één speler tijdens een wedstrijd volgen. Vul het formulier in en ik neem zo snel mogelijk contact met je op.
 sidebar:
   label: Duidelijke afspraken
   items:
-    - Voor clubs én individuele spelers
-    - Binnen maximaal {delivery_days} dagen
-    - Digitaal, in volledige resolutie
-    - Betaalbare en bespreekbare prijzen
+    - Voor clubs en individuele spelers
+    - Levering binnen {delivery_days} dagen
+    - Foto's in volledige resolutie
+    - Een betaalbare prijs die past bij de opdracht
   direct_email_label: Liever rechtstreeks mailen?
   image:
     src: /assets/img/site/boeken.webp
-    alt: Spelers in duel tijdens een voetbalwedstrijd in Antwerpen — {brand_name}
+    alt: Spelers in duel tijdens een voetbalwedstrijd in Antwerpen
 privacy_text: Je gegevens worden alleen gebruikt om contact met je op te nemen over deze aanvraag.
 submit_label: Aanvraag versturen

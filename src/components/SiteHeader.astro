@@ -33,7 +33,7 @@ const isCurrent = (href: string) =>
       <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span></span>
     </button>
 
-    <a class="sa-brand" href="/" aria-label={`${settings.brand_name} — naar de homepage`}>
+    <a class="sa-brand" href="/" aria-label={`${settings.brand_name}, naar de homepage`}>
       <span class="sa-logo">
         <img class="sa-logo__ink" src="/assets/brand/logo-wordmark.svg" alt="" width="1445" height="100" />
         <img class="sa-logo__light" src="/assets/brand/logo-wordmark-light.svg" alt="" width="1445" height="100" />
@@ -53,6 +53,6 @@ const isCurrent = (href: string) =>
   </nav>
   <div class="mobile-menu__foot">
     <a href={`mailto:${settings.contact.email}`}>{settings.contact.email}</a>
-    <a href={settings.contact.instagram_url} target="_blank" rel="noopener noreferrer">Instagram — {settings.contact.instagram_handle}</a>
+    <a href={settings.contact.instagram_url} target="_blank" rel="noopener noreferrer">Instagram: {settings.contact.instagram_handle}</a>
   </div>
 </div>

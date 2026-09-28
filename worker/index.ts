@@ -103,7 +103,7 @@ function formatDisplayDate(value: string): string {
 }
 
 function validateBooking(booking: Booking): string | null {
-  if (!ALLOWED_APPLICANT_TYPES.has(booking.applicantType)) return 'Kies een geldig type aanvraag.';
+  if (!ALLOWED_APPLICANT_TYPES.has(booking.applicantType)) return 'Kies een geldig aanvraagtype.';
   if (booking.contactName.length < 2 || booking.contactName.length > 100) return 'Vul een geldige naam in.';
   if (booking.clubName.length > 120) return 'De club- of ploegnaam is te lang.';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(booking.email) || booking.email.length > 254) return 'Vul een geldig e-mailadres in.';
@@ -138,7 +138,7 @@ function emailText(booking: Booking): string {
   return [
     'Nieuwe boekingsaanvraag via sidelineaction.be',
     '',
-    `Type: ${formatApplicantType(booking.applicantType)}`,
+    `Aanvraagtype: ${formatApplicantType(booking.applicantType)}`,
     `Club of ploeg: ${booking.clubName || 'Niet opgegeven'}`,
     `Contactpersoon: ${booking.contactName}`,
     `E-mail: ${booking.email}`,
@@ -151,7 +151,7 @@ function emailText(booking: Booking): string {
 
 function emailHtml(booking: Booking): string {
   const rows = [
-    ['Type', formatApplicantType(booking.applicantType)],
+    ['Aanvraagtype', formatApplicantType(booking.applicantType)],
     ['Club of ploeg', booking.clubName || 'Niet opgegeven'],
     ['Contactpersoon', booking.contactName],
     ['E-mail', booking.email],
@@ -165,7 +165,7 @@ function emailHtml(booking: Booking): string {
     .map(([label, value]) => `<tr><th align="left" style="padding:6px 16px 6px 0;vertical-align:top">${escapeHtml(label)}</th><td style="padding:6px 0">${escapeHtml(value)}</td></tr>`)
     .join('');
 
-  return `<h1>Nieuwe boekingsaanvraag</h1><p>Er is een nieuwe aanvraag verstuurd via sidelineaction.be.</p><table>${tableRows}</table>`;
+  return `<h1>Nieuwe boekingsaanvraag</h1><p>Iemand heeft een nieuwe aanvraag ingediend via sidelineaction.be.</p><table>${tableRows}</table>`;
 }
 
 async function readBodyWithLimit(request: Request): Promise<ArrayBuffer | null> {
@@ -242,7 +242,7 @@ async function handleBooking(request: Request, env: Env): Promise<Response> {
       to: env.BOOKING_TO_EMAIL,
       from: {
         email: env.BOOKING_FROM_EMAIL,
-        name: 'Sideline Action website',
+        name: 'Sideline Action',
       },
       replyTo: booking.email,
       subject: `Nieuwe boekingsaanvraag van ${booking.contactName}`,

@@ -86,7 +86,7 @@ export async function preparePhoto(photo: ImageMetadata): Promise<RenderedPhoto>
 }
 
 export function photoAlt(shoot: Shoot, index: number, brandName: string): string {
-  return `${shoot.title} — ${shoot.type.toLowerCase()} in ${shoot.location} — foto ${index + 1} van ${brandName}`;
+  return `${shoot.title}, ${shoot.type.toLowerCase()} in ${shoot.location}, foto ${index + 1} van ${brandName}`;
 }
 
 export function formatShootDate(date?: string): string | null {

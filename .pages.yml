@@ -116,7 +116,7 @@ content:
         required: true
         options: { maxlength: 120 }
       - name: type
-        label: Type shoot
+        label: Soort shoot
         type: reference
         required: true
         description: Beheer de beschikbare keuzes onder Shoottypes.
@@ -125,7 +125,7 @@ content:
           search: name
           value: "{path}"
           label: "{primary}"
-          placeholder: Kies een shoottype
+          placeholder: Kies een soort shoot
       - name: location
         label: Locatie
         type: string

@@ -39,7 +39,7 @@ const page = resolveSiteTokens(await getBookingPage(), settings);
                   <div class="field" data-field>
           <label for="clubnaam">Club of ploeg <span class="muted-2" style="text-transform:none;letter-spacing:0">(optioneel)</span></label>
           <input type="text" id="clubnaam" name="clubnaam" autocomplete="organization">
-          <span class="hint">Mag leeg blijven bij een persoonlijke opdracht.</span>
+          <span class="hint">Dit veld mag leeg blijven bij een persoonlijke opdracht.</span>
           <span class="err" id="clubnaam-err">Controleer de naam van de club of ploeg.</span>
         </div>
                   <div class="field" data-field>
@@ -64,7 +64,7 @@ const page = resolveSiteTokens(await getBookingPage(), settings);
                 </div>
                 <div class="fields fields--2">
                   <div class="field" data-field>
-          <label for="datum">Datum wedstrijd of shoot</label>
+          <label for="datum">Datum van de wedstrijd of shoot</label>
           <input type="date" id="datum" name="datum" required >
 
           <span class="err" id="datum-err">Kies de datum van de wedstrijd of shoot.</span>
@@ -73,19 +73,19 @@ const page = resolveSiteTokens(await getBookingPage(), settings);
           <label for="starttijd">Startuur</label>
           <input type="time" id="starttijd" name="starttijd" required >
 
-          <span class="err" id="starttijd-err">Vul het uur in.</span>
+          <span class="err" id="starttijd-err">Vul een geldig startuur in.</span>
         </div>
                   <div class="field field--full" data-field>
           <label for="locatie">Locatie</label>
           <input type="text" id="locatie" name="locatie" required >
-          <span class="hint">Terrein of adres van de wedstrijd of shoot.</span>
+          <span class="hint">Vul het terrein of adres van de wedstrijd of shoot in.</span>
           <span class="err" id="locatie-err">Vul de locatie in.</span>
         </div>
                   <div class="field field--full" data-field>
           <label for="extra">Extra informatie <span class="muted-2" style="text-transform:none;letter-spacing:0">(optioneel)</span></label>
           <textarea id="extra" name="extra" rows="3"  ></textarea>
           <span class="hint">Bijvoorbeeld de tegenstander, de speler die centraal staat of iets waar ik op moet letten.</span>
-          <span class="err" id="extra-err">Vul dit veld in.</span>
+          <span class="err" id="extra-err">De extra informatie is te lang.</span>
         </div>
                 </div>
               </fieldset>

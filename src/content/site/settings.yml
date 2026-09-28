@@ -25,10 +25,10 @@ navigation:
   collaboration: Samenwerking
   menu: Menu
 footer:
-  tagline: Professionele, betaalbare voetbalfotografie voor clubs en individuele spelers in {region}.
+  tagline: Betaalbare voetbalfotografie voor clubs en individuele spelers in {region}.
   navigation_heading: Navigatie
   contact_heading: Contact
   collaboration_label: Samenwerking & afspraken
 default_og_image:
   src: /assets/img/site/hero.webp
-  alt: Voetballer in een geel shirt dribbelt met de bal — foto door {photographer_name} voor {brand_name}
+  alt: Voetballer in een geel shirt dribbelt met de bal, gefotografeerd door {photographer_name}

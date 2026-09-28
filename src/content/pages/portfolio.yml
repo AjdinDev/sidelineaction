@@ -1,17 +1,17 @@
 seo:
-  title: Portfolio | {brand_name} — Voetbalfotografie Antwerpen
-  description: Bekijk wedstrijden en spelersshoots van {brand_name} in {region}.
+  title: Portfolio | {brand_name} | Voetbalfotografie Antwerpen
+  description: Bekijk wedstrijdreportages en spelersshoots van {brand_name} in {region}.
 header:
   label: Portfolio
   title: Het werk
-  intro: Wedstrijden en shoots in {region}. Klik op een shoot voor de volledige reeks.
+  intro: Wedstrijdreportages en spelersshoots in {region}. Open een shoot om de volledige reeks te bekijken.
 empty:
   title: Nog geen shoots gepubliceerd
   text: Zodra de foto's van een wedstrijd verwerkt zijn, verschijnen ze hier automatisch.
 detail:
   home_label: Home
   portfolio_label: Portfolio
-  type_label: Type
+  type_label: Soort shoot
   location_label: Locatie
   date_label: Datum
   photos_label: Foto's
@@ -19,18 +19,18 @@ detail:
 cta:
   label: Boeken
   title: Ook beelden van je club of van één speler?
-  text: Vertel welke wedstrijd of opdracht je in gedachten hebt en ik neem zo snel mogelijk contact op.
+  text: Vertel welke wedstrijdreportage of spelersshoot je wilt boeken. Ik neem zo snel mogelijk contact op.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:
     src: /assets/img/site/band-cta.webp
-    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — {brand_name}
+    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen
 detail_cta:
   label: Boeken
   title: Zin in wedstrijdbeelden zoals deze?
-  text: Laat weten of het om een clubreportage of één speler gaat en ik neem zo snel mogelijk contact op.
+  text: Laat weten of je een wedstrijdreportage of spelersshoot wilt boeken. Ik neem zo snel mogelijk contact op.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:
     src: /assets/img/site/band-cta.webp
-    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — {brand_name}
+    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen

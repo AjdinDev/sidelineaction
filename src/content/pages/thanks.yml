@@ -2,8 +2,8 @@ seo:
   title: Bedankt voor je aanvraag | {brand_name}
   description: Bedankt voor je aanvraag bij {brand_name}.
 label: Verzonden
-title: Bedankt.
+title: Bedankt
 text: Je aanvraag is verzonden. Ik neem zo snel mogelijk contact met je op.
-follow_up_text: Geen antwoord gekregen binnen enkele dagen? Stuur dan gerust een mail naar {email}.
+follow_up_text: Heb je na enkele dagen nog geen antwoord? Mail dan naar {email}.
 portfolio_label: Bekijk het portfolio
-home_label: Terug naar home
+home_label: Terug naar de homepage

@@ -1,34 +1,34 @@
 seo:
   title: "{brand_name} | Voetbalfotografie voor clubs en spelers"
-  description: Professionele, betaalbare voetbalbeelden voor clubs en individuele spelers in {region}.
+  description: Betaalbare voetbalfotografie voor clubs en individuele spelers in {region}.
   image: /assets/img/site/hero.webp
 hero:
-  eyebrow: Voetbalfotografie — voor clubs en spelers
+  eyebrow: Voetbalfotografie voor clubs en spelers
   title_lines:
     - Sideline
     - Action
-  subtitle: Professionele voetbalbeelden voor volledige clubs én individuele spelers.
+  subtitle: Wedstrijdreportages voor clubs en actiefoto's van individuele spelers.
   primary_label: Bekijk portfolio
   secondary_label: Boek een shoot
-  meta: "{photographer_name} — Antwerpen"
+  meta: "{photographer_name}, Antwerpen"
   image:
     src: /assets/img/site/hero.webp
-    alt: Voetballer in een geel shirt dribbelt met de bal — foto door {photographer_name} voor {brand_name}
+    alt: Voetballer in een geel shirt dribbelt met de bal, gefotografeerd door {photographer_name}
 intro:
   label: Sideline Action
   title: Voetbalfotografie voor clubs én individuele spelers.
-  lead: Boek een volledige wedstrijdreportage voor je club, of laat één speler gericht volgen tijdens een wedstrijd.
-  text: Ik leg actie, duels, emoties en sfeer vast. Daarna selecteer en bewerk ik de sterkste beelden voor social media, websites en persoonlijke profielen.
+  lead: Boek een volledige wedstrijdreportage voor je club of laat één speler tijdens een wedstrijd volgen.
+  text: Ik leg actie, duels, emoties en sfeer vast. Daarna selecteer en bewerk ik de beste foto's voor sociale media, websites en sportprofielen.
   link_label: Over mij
   images:
     - src: /assets/img/site/intro-1.webp
       alt: Duel om de bal tussen twee spelers tijdens een voetbalwedstrijd in Antwerpen
     - src: /assets/img/site/intro-2.webp
-      alt: Speler voor het doel tijdens een voetbalwedstrijd — {brand_name}
+      alt: Speler voor het doel tijdens een voetbalwedstrijd in Antwerpen
 featured:
   label: Portfolio
   shoot: src/content/shoots/ternesse.md
-  text: Een volledige wedstrijd, van de opwarming tot het laatste fluitsignaal. Een uitgebreide selectie beelden, geselecteerd en afgewerkt.
+  text: Ik fotografeer de wedstrijd van de opwarming tot het laatste fluitsignaal en lever een ruime selectie zorgvuldig bewerkte foto's.
   link_label: Bekijk de shoot
   portfolio_label: Volledig portfolio
   caption: Duel om de bal, tweede helft.
@@ -42,51 +42,51 @@ band_image:
 services:
   label: Diensten
   title: Twee manieren om te boeken.
-  text: "Of je nu namens een club boekt of als individuele speler: de fotografie blijft gericht op echte wedstrijdmomenten en een sterke, professionele selectie."
+  text: Clubs krijgen een volledige wedstrijdreportage. Spelers kunnen mij boeken om hen tijdens een wedstrijd te volgen.
   link_label: Alle diensten
   items:
     - title: Voor clubs
-      text: Volledige wedstrijdfotografie met actie, spelers, teams, fans en sfeer voor sociale media, website en communicatie.
+      text: Een volledige wedstrijdreportage met actie, spelers, supporters en sfeer voor sociale media, de clubwebsite en andere communicatie.
     - title: Voor spelers
-      text: Persoonlijke actiefoto's van één speler tijdens een wedstrijd, bruikbaar voor Instagram, social media en een eigen sportprofiel.
+      text: Actiefoto's van één speler tijdens een wedstrijd, geschikt voor sociale media en een persoonlijk sportprofiel.
     - title: Actie en sfeer
-      text: Duels, sprints, schoten, emoties en de momenten langs de lijn die het verhaal compleet maken.
-    - title: Professionele levering
-      text: Een zorgvuldig geselecteerde en professioneel bewerkte reeks, zonder zware extra filters.
+      text: Duels, sprints, schoten, emoties en momenten langs de lijn die de wedstrijd compleet in beeld brengen.
+    - title: Selectie en levering
+      text: Ik selecteer en bewerk de beste foto's in een vaste, herkenbare stijl.
 about:
   label: Over mij
   title: Ik ben {photographer_name}.
-  lead: "{photographer_age} jaar oud, en serieus bezig met sportfotografie."
-  text: Ik fotografeer vooral voetbalwedstrijden in {region}. Tijdens wedstrijden probeer ik zoveel mogelijk actie, spelers, fans en sfeer vast te leggen, en daaruit lever ik een sterke selectie goede beelden.
+  lead: Ik ben {photographer_age} jaar en neem sportfotografie serieus.
+  text: Ik fotografeer voetbalwedstrijden in {region}. Ik leg actie, spelers, supporters en sfeer vast en selecteer na afloop de beste foto's.
   link_label: Mijn verhaal en apparatuur
   image:
     src: /assets/img/site/over-mij.webp
-    alt: Speler aan de bal tijdens een voetbalwedstrijd in Antwerpen — {brand_name}
+    alt: Speler aan de bal tijdens een voetbalwedstrijd in Antwerpen
 facts:
-  label: Bij een volledige wedstrijd
+  label: Bij een volledige wedstrijdreportage
   items:
     - value: "{photo_range}"
-      label: Professioneel bewerkte foto's per wedstrijd. Minimaal {photo_minimum}.
+      label: Bewerkte foto's per wedstrijd. Minimaal {photo_minimum}.
     - value: "{delivery_days}"
-      label: Dagen maximaal tussen de wedstrijd en de levering.
+      label: Maximale levertijd na de wedstrijd.
     - value: "{delivery_format}"
       label: Geleverd in volledige resolutie, meteen bruikbaar voor de clubkanalen.
 offer:
   label: Aanbod
-  title: Betaalbare sportfotografie, op maat van de opdracht.
-  text: Mijn tarieven liggen bewust lager dan bij veel professionele sportfotografen. Prijzen zijn bespreekbaar en afhankelijk van de opdracht. Benieuwd naar de prijs voor jouw wedstrijd of spelersshoot?
+  title: Betaalbare sportfotografie op maat van de opdracht.
+  text: Ik houd mijn tarieven betaalbaar. De prijs hangt af van de opdracht en is bespreekbaar. Wil je weten wat jouw wedstrijdreportage of spelersshoot kost?
   email_label: Stuur een mailtje
   instagram_label: Instagram
   link_label: Wat is inbegrepen
 booking:
   label: Boeken
   title: Klaar voor beelden van je club of van één speler?
-  text: Vertel kort om welke wedstrijd of opdracht het gaat. Ik neem zo snel mogelijk contact op met een voorstel en de afspraken.
+  text: Vertel om welke wedstrijdreportage of spelersshoot het gaat. Ik neem zo snel mogelijk contact op met een voorstel en duidelijke afspraken.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:
     src: /assets/img/site/band-cta.webp
-    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — {brand_name}
+    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen
 contact:
   label: Contact
   title_lines:

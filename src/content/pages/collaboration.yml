@@ -1,40 +1,40 @@
 seo:
   title: Samenwerking & afspraken | {brand_name}
-  description: Lees de afspraken over opdrachten, levering, betaling en gebruik van foto’s.
+  description: Lees de afspraken over opdrachten, levering, betaling en gebruik van foto's.
 header:
   label: Samenwerking
   title: Afspraken
-  intro: Vóór een wedstrijd spreken we kort af wat er precies gebeurt. Die afspraken zetten we schriftelijk op papier, zodat het voor beide kanten duidelijk is.
+  intro: Vóór een opdracht spreken we af wat ik fotografeer, wat je ontvangt en wanneer ik lever. We zetten alles kort op papier.
 terms:
   - title: Opdracht
-    text: "Welke wedstrijd of spelersshoot gefotografeerd wordt: datum, uur, locatie en wie centraal staat."
+    text: We noteren de wedstrijd of spelersshoot, de datum, het startuur, de locatie en wie centraal staat.
   - title: Prijs
-    text: De afgesproken prijs voor die opdracht. Er komen geen kosten bij die niet vooraf besproken zijn.
+    text: We leggen de prijs vooraf vast. Er komen geen kosten bij die we niet hebben afgesproken.
   - title: Betaling
-    text: Een voorschot bij het vastleggen van de opdracht en het saldo na levering van de foto's.
+    text: Je betaalt een voorschot wanneer we de opdracht vastleggen en het saldo na de levering.
   - title: Wat je ontvangt
-    text: Bij een volledige wedstrijdreportage {photo_range} geselecteerde en professioneel bewerkte foto's. Bij een spelersshoot spreken we de selectie vooraf af.
+    text: Bij een volledige wedstrijdreportage ontvang je {photo_range} geselecteerde en bewerkte foto's. Bij een spelersshoot spreken we de selectie vooraf af.
   - title: Levering
-    text: Digitaal en in volledige resolutie, binnen maximaal {delivery_days} dagen na de wedstrijd of shoot.
+    text: Ik lever de foto's digitaal en in volledige resolutie, uiterlijk {delivery_days} dagen na de wedstrijd of shoot.
   - title: Gebruik van de foto's
-    text: De opdrachtgever mag de foto's gebruiken voor de vooraf afgesproken eigen kanalen. Ik mag een selectie gebruiken voor mijn portfolio en social media, tenzij daar vooraf bezwaar tegen wordt gemaakt.
+    text: De opdrachtgever mag de foto's gebruiken op de afgesproken eigen kanalen. Ik mag een selectie delen in mijn portfolio en op sociale media, tenzij de opdrachtgever vooraf bezwaar maakt.
   - title: Annulering of verplaatsing
-    text: Wordt de wedstrijd of shoot afgelast of verplaatst, dan zoeken we samen een nieuwe datum en blijft het voorschot staan. Bij definitieve afzegging wordt het voorschot niet terugbetaald.
+    text: Als de wedstrijd of shoot wordt afgelast of verplaatst, zoeken we samen een nieuwe datum. Het voorschot geldt dan voor die nieuwe datum. Bij een definitieve annulering wordt het voorschot niet terugbetaald.
 privacy:
   label: Privacy
-  title: Foto's van jeugdspelers.
-  intro: "Bij jeugdwedstrijden staan er minderjarige spelers op de foto's. Daarom houd ik het simpel en duidelijk:"
+  title: Foto's van jeugdspelers
+  intro: "Bij jeugdwedstrijden fotografeer ik minderjarige spelers. Daarom gelden deze afspraken:"
   items:
     - Ik publiceer geen namen of persoonlijke gegevens van spelers.
-    - De club bepaalt welke foto's gepubliceerd mogen worden en regelt de toestemmingen van ouders of voogden.
-    - Vraagt de club om een foto niet te gebruiken of te verwijderen, dan gebeurt dat meteen.
-  closing: Wil de club dat er helemaal geen foto's in mijn portfolio komen? Dat is geen probleem, laat het gewoon vooraf weten.
+    - De club bepaalt welke foto's gepubliceerd mogen worden en regelt de toestemming van ouders of voogden.
+    - Als de club vraagt om een foto niet te gebruiken of te verwijderen, doe ik dat meteen.
+  closing: Wil de club geen foto's in mijn portfolio? Dat is geen probleem. Laat het vooraf weten.
 cta:
   label: Boeken
   title: Alles duidelijk?
-  text: Vul het boekingsformulier in, dan stuur ik de afspraken op maat van je wedstrijd of spelersshoot door.
+  text: Vul het boekingsformulier in. Daarna stuur ik de afspraken voor je wedstrijdreportage of spelersshoot door.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:
     src: /assets/img/site/band-cta.webp
-    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — {brand_name}
+    alt: Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen
