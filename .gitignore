@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# build output and generated framework files
+dist/
+.astro/
+.wrangler/
+.playwright-cli/
+output/
+
+# local environment and logs
+.dev.vars
+.env
+.env.*
+!.env.example
+*.log
+
+# editor and operating system files
+.DS_Store
+.idea/
+.vscode/
+*.swp

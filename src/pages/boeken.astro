@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Boek voetbalfotografie | Sideline Action" description="Vraag een wedstrijdreportage of individuele spelersshoot aan bij Sideline Action.">
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <p class="label label--rule">Boeken</p>
+        <h1 class="page-head__title" data-reveal>Boek een shoot</h1>
+        <p class="lead page-head__lead" data-reveal="fade">Voor een volledige clubwedstrijd of één individuele speler. Vul het korte formulier in en ik neem zo snel mogelijk contact met je op.</p>
+
+      </div>
+    </section>
+
+    <section class="section section--top0">
+      <div class="wrap">
+        <div class="split split--top">
+          <div>
+            <form class="form" id="booking-form" name="boeking" method="POST" action="/api/booking">
+              <p class="hp" aria-hidden="true"><label>Laat dit veld leeg <input name="website" tabindex="-1" autocomplete="off"></label></p>
+
+              <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+
+              <fieldset class="fieldset">
+                <div class="fieldset__head">
+                  <span class="fieldset__n">01</span>
+                <h2 class="fieldset__title">Jouw gegevens</h2>
+                </div>
+                <div class="fields fields--2">
+                  <div class="field" data-field>
+          <label for="type-aanvrager">Ik ben</label>
+          <select id="type-aanvrager" name="type-aanvrager" required>
+            <option value="" selected disabled>Kies een optie</option>
+            <option value="club">Club</option>
+            <option value="individuele-speler">Individuele speler</option>
+            <option value="anders">Anders</option>
+          </select>
+          <span class="err" id="type-aanvrager-err">Kies wat het best bij je past.</span>
+        </div>
+                  <div class="field" data-field>
+          <label for="clubnaam">Club of ploeg <span class="muted-2" style="text-transform:none;letter-spacing:0">(optioneel)</span></label>
+          <input type="text" id="clubnaam" name="clubnaam" autocomplete="organization">
+          <span class="hint">Mag leeg blijven bij een persoonlijke opdracht.</span>
+          <span class="err" id="clubnaam-err">Controleer de naam van de club of ploeg.</span>
+        </div>
+                  <div class="field" data-field>
+          <label for="contactpersoon">Contactpersoon</label>
+          <input type="text" id="contactpersoon" name="contactpersoon" required autocomplete="name">
+
+          <span class="err" id="contactpersoon-err">Vul je naam in.</span>
+        </div>
+                  <div class="field" data-field>
+          <label for="email">E-mailadres</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+
+          <span class="err" id="email-err">Vul een geldig e-mailadres in.</span>
+        </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="fieldset">
+                <div class="fieldset__head">
+                  <span class="fieldset__n">02</span>
+                <h2 class="fieldset__title">Opdrachtgegevens</h2>
+                </div>
+                <div class="fields fields--2">
+                  <div class="field" data-field>
+          <label for="datum">Datum wedstrijd of shoot</label>
+          <input type="date" id="datum" name="datum" required >
+
+          <span class="err" id="datum-err">Kies de datum van de wedstrijd of shoot.</span>
+        </div>
+                  <div class="field" data-field>
+          <label for="starttijd">Startuur</label>
+          <input type="time" id="starttijd" name="starttijd" required >
+
+          <span class="err" id="starttijd-err">Vul het uur in.</span>
+        </div>
+                  <div class="field field--full" data-field>
+          <label for="locatie">Locatie</label>
+          <input type="text" id="locatie" name="locatie" required >
+          <span class="hint">Terrein of adres van de wedstrijd of shoot.</span>
+          <span class="err" id="locatie-err">Vul de locatie in.</span>
+        </div>
+                  <div class="field field--full" data-field>
+          <label for="extra">Extra informatie <span class="muted-2" style="text-transform:none;letter-spacing:0">(optioneel)</span></label>
+          <textarea id="extra" name="extra" rows="3"  ></textarea>
+          <span class="hint">Bijvoorbeeld de tegenstander, de speler die centraal staat of iets waar ik op moet letten.</span>
+          <span class="err" id="extra-err">Vul dit veld in.</span>
+        </div>
+                </div>
+              </fieldset>
+
+              <div>
+                <button class="btn btn--solid" type="submit" id="booking-submit">
+                  <span class="btn-label">Aanvraag versturen</span>
+                  <span class="spinner" aria-hidden="true"></span>
+                </button>
+                <p class="hint mt-2">Je gegevens worden alleen gebruikt om contact met je op te nemen over deze aanvraag.</p>
+              </div>
+            </form>
+          </div>
+
+          <aside>
+            <div data-reveal="mask">
+              <div class="ratio ratio--45  ">
+
+              <img src="/assets/img/site/boeken.webp"
+                   alt="Spelers in duel tijdens een voetbalwedstrijd in Antwerpen — Sideline Action" width="900" height="1350"
+                   loading="lazy" decoding="async">
+            </div>
+            </div>
+            <div class="mt-4">
+              <p class="label label--rule">Duidelijke afspraken</p>
+              <ul class="checks mt-3">
+                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Voor clubs én individuele spelers</span></li>
+                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Binnen maximaal 5 dagen</span></li>
+                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Digitaal, in volledige resolutie</span></li>
+                <li><span class="tick" aria-hidden="true">&mdash;</span><span>Betaalbare en bespreekbare prijzen</span></li>
+              </ul>
+              <p class="hint mt-3">Liever rechtstreeks mailen? <a href="mailto:harunviteskic50@gmail.com" style="color:var(--ink)">harunviteskic50@gmail.com</a></p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

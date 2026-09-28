@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "sidelineaction",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-09-28",
+  "vars": {
+    "BOOKING_FROM_EMAIL": "website@sidelineaction.be",
+    "BOOKING_TO_EMAIL": "harunviteskic50@gmail.com"
+  },
+  "send_email": [
+    {
+      "name": "BOOKING_EMAIL",
+      "destination_address": "harunviteskic50@gmail.com",
+      "allowed_sender_addresses": ["website@sidelineaction.be"]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatShootDate, photoAlt, photoUrl, publishedShoots } from '../data/shoots';
+---
+
+<BaseLayout
+  title="Portfolio | Sideline Action — Voetbalfotografie Antwerpen"
+  description="Bekijk wedstrijden en spelersshoots van Sideline Action in Antwerpen en omgeving."
+>
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <p class="label label--rule">Portfolio</p>
+        <h1 class="page-head__title" data-reveal>Het werk</h1>
+        <p class="lead page-head__lead" data-reveal="fade">Wedstrijden en shoots in Antwerpen en omgeving. Klik op een shoot voor de volledige reeks.</p>
+      </div>
+    </section>
+
+    <section class="section section--top0">
+      <div class="wrap">
+        {publishedShoots.length > 0 ? (
+          <div class="work work--2">
+            {publishedShoots.map((shoot, index) => {
+              const cover = shoot.photos.find((photo) => photo.name === shoot.cover) ?? shoot.photos[0];
+              const date = formatShootDate(shoot.date);
+              const meta = [shoot.type, shoot.location, date].filter(Boolean).join(' · ');
+              return (
+                <a class="work-card" href={`/portfolio/${shoot.slug}`} data-reveal style={`--reveal-delay:${(index % 2) * 90}ms`}>
+                  <div class="work-card__media">
+                    <img
+                      src={photoUrl(shoot, cover)}
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      width={cover.width}
+                      height={cover.height}
+                      alt={photoAlt(shoot, 0)}
+                    />
+                  </div>
+                  <div class="work-card__foot">
+                    <div>
+                      <h2 class="work-card__title">{shoot.title}</h2>
+                      <p class="work-card__meta">{meta}</p>
+                    </div>
+                    <span class="work-card__n">{shoot.photos.length} foto's</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        ) : (
+          <div class="empty">
+            <h2>Nog geen shoots gepubliceerd</h2>
+            <p>Zodra de foto's van een wedstrijd verwerkt zijn, verschijnen ze hier automatisch.</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="split split--top">
+          <div>
+            <p class="label label--rule">Boeken</p>
+            <h2 class="h2 mt-2" data-reveal>Ook beelden van je club of van één speler?</h2>
+            <p class="muted mt-3 measure" data-reveal="fade">Vertel welke wedstrijd of opdracht je in gedachten hebt en ik neem zo snel mogelijk contact op.</p>
+            <div class="btn-row mt-4" data-reveal>
+              <a class="btn btn--solid" href="/boeken"><span>Boek een shoot</span></a>
+              <a class="link" href="/aanbod">Bekijk het aanbod</a>
+            </div>
+          </div>
+          <div data-reveal="mask">
+            <div class="ratio ratio--45 zoom">
+              <img src="/assets/img/site/band-cta.webp" alt="Twee spelers in duel om de bal tijdens een voetbalwedstrijd in Antwerpen — Sideline Action" width="900" height="1350" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

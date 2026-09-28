@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Pagina niet gevonden | Sideline Action" description="Deze pagina bestaat niet of is verplaatst." noindex>
+  <main id="main">
+    <section class="section" style="padding-top:calc(var(--header-h) + clamp(5rem, 4rem + 7vw, 10rem));min-height:68svh">
+      <div class="wrap wrap--text">
+        <p class="label label--rule">404</p>
+        <h1 class="h1 mt-3">Pagina niet gevonden.</h1>
+        <p class="lead mt-3">Deze pagina bestaat niet of is verplaatst.</p>
+        <div class="btn-row mt-4">
+          <a class="btn btn--solid" href="/"><span>Naar de homepage</span></a>
+          <a class="link" href="/portfolio">Bekijk het portfolio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
