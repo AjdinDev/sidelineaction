@@ -1,0 +1,103 @@
+media:
+  - name: portfolio
+    label: Portfoliofoto's
+    input: src/assets/portfolio
+    output: ../../assets/portfolio
+    extensions: [jpg, jpeg, png, webp]
+    categories: [image]
+    rename: random
+    commit:
+      templates:
+        create: "Voeg portfoliofoto {filename} toe"
+        delete: "Verwijder portfoliofoto {filename}"
+
+content:
+  - name: shoots
+    label: Portfolio
+    type: collection
+    path: src/content/shoots
+    format: yaml-frontmatter
+    filename:
+      template: "{primary}.md"
+      field: create
+    subfolders: false
+    operations:
+      rename: false
+    view:
+      fields: [title, type, location, published, order]
+      primary: title
+      sort: [order, title]
+      search: [title, type, location]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+        options:
+          maxlength: 120
+      - name: type
+        label: Type shoot
+        type: string
+        required: true
+        options:
+          maxlength: 120
+      - name: location
+        label: Locatie
+        type: string
+        required: true
+        options:
+          maxlength: 160
+      - name: date
+        label: Datum
+        type: date
+        default: ""
+        options:
+          format: yyyy-MM-dd
+      - name: intro
+        label: Introductie
+        type: text
+        required: true
+        options:
+          maxlength: 400
+      - name: published
+        label: Gepubliceerd
+        type: boolean
+        default: true
+      - name: order
+        label: Volgorde
+        type: number
+        required: true
+        default: 0
+        description: Een lager nummer verschijnt eerder in het portfolio.
+        options:
+          min: 0
+      - name: cover
+        label: Coverfoto
+        type: image
+        required: true
+        options:
+          media: portfolio
+          extensions: [jpg, jpeg, png, webp]
+      - name: photos
+        label: Galerij
+        type: image
+        required: true
+        options:
+          media: portfolio
+          multiple:
+            max: 200
+          unique: true
+          extensions: [jpg, jpeg, png, webp]
+
+settings:
+  hide: true
+  content:
+    merge: false
+  commit:
+    templates:
+      create: "Maak portfolio-item {filename}"
+      update: "Werk portfolio-item {filename} bij"
+      delete: "Verwijder portfolio-item {filename}"

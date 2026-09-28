@@ -1,6 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { formatShootDate, photoAlt, photoUrl, publishedShoots } from '../data/shoots';
+import { formatShootDate, getPublishedShoots, photoAlt, preparePhoto } from '../data/shoots';
+
+const publishedShoots = await getPublishedShoots();
+const shootCards = await Promise.all(publishedShoots.map(async (shoot) => ({
+  shoot,
+  cover: await preparePhoto(shoot.cover),
+})));
 ---
 
 <BaseLayout
@@ -18,23 +24,22 @@ import { formatShootDate, photoAlt, photoUrl, publishedShoots } from '../data/sh
 
     <section class="section section--top0">
       <div class="wrap">
-        {publishedShoots.length > 0 ? (
+        {shootCards.length > 0 ? (
           <div class="work work--2">
-            {publishedShoots.map((shoot, index) => {
-              const cover = shoot.photos.find((photo) => photo.name === shoot.cover) ?? shoot.photos[0];
-              const coverIndex = shoot.photos.indexOf(cover);
+            {shootCards.map(({ shoot, cover }, index) => {
+              const resolvedCoverIndex = shoot.photos.findIndex((photo) => photo.src === shoot.cover.src);
               const date = formatShootDate(shoot.date);
               const meta = [shoot.type, shoot.location, date].filter(Boolean).join(' · ');
               return (
                 <a class="work-card" href={`/portfolio/${shoot.slug}`} data-reveal style={`--reveal-delay:${(index % 2) * 90}ms`}>
                   <div class="work-card__media">
                     <img
-                      src={photoUrl(shoot, cover)}
+                      src={cover.src}
                       loading={index < 2 ? 'eager' : 'lazy'}
                       decoding="async"
                       width={cover.width}
                       height={cover.height}
-                      alt={photoAlt(shoot, coverIndex)}
+                      alt={photoAlt(shoot, Math.max(0, resolvedCoverIndex))}
                     />
                   </div>
                   <div class="work-card__foot">

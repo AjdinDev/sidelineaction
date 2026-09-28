@@ -1,4 +1,7 @@
 ---
+import ternesse002 from '../assets/portfolio/ternesse-002.webp';
+import ternesse003 from '../assets/portfolio/ternesse-003.webp';
+import ternesse004 from '../assets/portfolio/ternesse-004.webp';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -85,9 +88,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <figure class="feature" data-reveal="mask">
           <div class="ratio ratio--45 zoom ">
 
-              <img src="/assets/img/ternesse/ternesse-002.webp"
-                   alt="Twee spelers schouder aan schouder in duel om de bal — Ternesse, Sideline Action" width="900" height="1350"
-                   loading="lazy" decoding="async">
+              <img src={ternesse002.src} width={ternesse002.width} height={ternesse002.height}
+                     alt="Twee spelers schouder aan schouder in duel om de bal — Ternesse, Sideline Action"
+                     loading="lazy" decoding="async">
             </div>
           <figcaption class="cap"><span class="cap-n">001</span><span>Duel om de bal, tweede helft.</span></figcaption>
         </figure>
@@ -96,17 +99,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <figure style="margin:0" data-reveal="mask">
             <div class="ratio ratio--45 zoom ">
 
-              <img src="/assets/img/ternesse/ternesse-004.webp"
-                   alt="Speler trapt de bal vanaf de hoekschopstip — Ternesse, Sideline Action" width="900" height="1350"
-                   loading="lazy" decoding="async">
+              <img src={ternesse004.src} width={ternesse004.width} height={ternesse004.height}
+                     alt="Speler trapt de bal vanaf de hoekschopstip — Ternesse, Sideline Action"
+                     loading="lazy" decoding="async">
             </div>
           </figure>
           <figure style="margin:0" data-reveal="mask">
             <div class="ratio ratio--34 zoom ">
 
-              <img src="/assets/img/ternesse/ternesse-003.webp"
-                   alt="Speler sprint met de bal richting het doel — Ternesse, Sideline Action" width="900" height="1350"
-                   loading="lazy" decoding="async">
+              <img src={ternesse003.src} width={ternesse003.width} height={ternesse003.height}
+                     alt="Speler sprint met de bal richting het doel — Ternesse, Sideline Action"
+                     loading="lazy" decoding="async">
             </div>
           </figure>
         </div>

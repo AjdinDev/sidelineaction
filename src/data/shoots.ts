@@ -1,115 +1,70 @@
-export interface Photo {
-  name: string;
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+type ShootData = CollectionEntry<'shoots'>['data'];
+
+export type Shoot = ShootData & {
+  slug: string;
+};
+
+export interface RenderedPhoto {
+  src: string;
   width: number;
   height: number;
 }
 
-export interface Shoot {
-  slug: string;
-  title: string;
-  type: string;
-  location: string;
-  date?: string;
-  cover: string;
-  intro: string;
-  hidden?: boolean;
-  photos: Photo[];
+function slugFromEntryId(id: string): string {
+  const filename = id.replace(/\\/g, '/').split('/').pop() ?? id;
+  return filename.replace(/\.[^.]+$/, '');
 }
 
-const ternessePhotos: Photo[] = [
-  ['ternesse-001', 900, 1350],
-  ['ternesse-002', 900, 1350],
-  ['ternesse-003', 900, 1350],
-  ['ternesse-004', 900, 1350],
-  ['ternesse-005', 900, 1350],
-  ['ternesse-006', 900, 1338],
-  ['ternesse-007', 900, 1350],
-  ['ternesse-008', 900, 1350],
-  ['ternesse-009', 900, 1350],
-  ['ternesse-010', 900, 1350],
-  ['ternesse-011', 900, 1350],
-  ['ternesse-012', 900, 1350],
-  ['ternesse-013', 900, 1350],
-  ['ternesse-014', 900, 1200],
-  ['ternesse-015', 900, 1350],
-  ['ternesse-016', 900, 1350],
-  ['ternesse-017', 900, 1277],
-  ['ternesse-018', 900, 1350],
-  ['ternesse-019', 900, 1350],
-  ['ternesse-020', 900, 1196],
-  ['ternesse-021', 900, 1350],
-  ['ternesse-022', 900, 1378],
-  ['ternesse-023', 900, 1438],
-  ['ternesse-024', 900, 1350],
-  ['ternesse-025', 900, 1350],
-  ['ternesse-026', 900, 1293],
-  ['ternesse-027', 900, 1200],
-  ['ternesse-028', 900, 1350],
-  ['ternesse-029', 900, 1350],
-  ['ternesse-030', 900, 1350],
-  ['ternesse-031', 900, 1350],
-  ['ternesse-032', 900, 1350],
-  ['ternesse-033', 900, 1350],
-  ['ternesse-034', 900, 1350],
-  ['ternesse-035', 900, 1350],
-  ['ternesse-036', 900, 1350],
-].map(([name, width, height]) => ({
-  name: String(name),
-  width: Number(width),
-  height: Number(height),
-}));
+function validateShoot(shoot: Shoot): void {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(shoot.slug)) {
+    throw new Error(`Portfolio-item "${shoot.title}" heeft een ongeldige URL-slug: ${shoot.slug}`);
+  }
 
-const otherMatchesPhotos: Photo[] = [
-  ['img-0298', 900, 1350],
-  ['img-0633', 900, 1350],
-  ['img-6584', 900, 985],
-  ['img-6585', 900, 1135],
-  ['img-6586', 900, 1350],
-  ['img-6587', 900, 1350],
-  ['img-6588', 900, 1350],
-  ['img-6589', 900, 600],
-  ['img-6590', 900, 1350],
-  ['img-6591', 900, 1350],
-  ['img-6592', 900, 1350],
-  ['img-6593', 900, 1350],
-  ['img-6594', 900, 1350],
-  ['img-6595', 900, 1350],
-  ['img-6596', 900, 1350],
-  ['img-6597', 900, 1350],
-  ['img-6598', 900, 1350],
-  ['img-6599', 900, 1350],
-  ['img-6601', 900, 1350],
-].map(([name, width, height]) => ({
-  name: String(name),
-  width: Number(width),
-  height: Number(height),
-}));
+  const photoUrls = shoot.photos.map((photo) => photo.src);
+  if (!photoUrls.includes(shoot.cover.src)) {
+    throw new Error(`De cover van portfolio-item "${shoot.title}" staat niet in de fotogalerij.`);
+  }
 
-export const shoots: Shoot[] = [
-  {
-    slug: 'ternesse',
-    title: 'Ternesse',
-    type: 'Voetbalwedstrijd',
-    location: 'Antwerpen en omgeving',
-    cover: 'ternesse-002',
-    intro: 'Een volledige wedstrijd, van de opwarming tot het laatste fluitsignaal.',
-    photos: ternessePhotos,
-  },
-  {
-    slug: 'andere-wedstrijden',
-    title: 'Andere wedstrijden',
-    type: 'Voetbalwedstrijden',
-    location: 'Antwerpen en omgeving',
-    cover: 'img-6584',
-    intro: 'Een selectie van actie, spelers en momenten uit andere wedstrijden.',
-    photos: otherMatchesPhotos,
-  },
-];
+  if (new Set(photoUrls).size !== photoUrls.length) {
+    throw new Error(`Portfolio-item "${shoot.title}" bevat dezelfde foto meer dan eens.`);
+  }
+}
 
-export const publishedShoots = shoots.filter((shoot) => !shoot.hidden && shoot.photos.length > 0);
+export async function getPublishedShoots(): Promise<Shoot[]> {
+  const entries = await getCollection('shoots', ({ data }) => data.published);
+  const shoots = entries.map((entry) => ({
+    ...entry.data,
+    slug: slugFromEntryId(entry.id),
+  }));
 
-export function photoUrl(shoot: Shoot, photo: Photo): string {
-  return `/assets/img/${shoot.slug}/${photo.name}.webp`;
+  shoots.forEach(validateShoot);
+
+  return shoots.sort((left, right) => (
+    left.order - right.order
+    || left.title.localeCompare(right.title, 'nl-BE')
+  ));
+}
+
+export async function preparePhoto(photo: ImageMetadata): Promise<RenderedPhoto> {
+  if (photo.format === 'webp') {
+    return photo;
+  }
+
+  const optimized = await getImage({
+    src: photo,
+    format: 'webp',
+    quality: 'high',
+  });
+
+  return {
+    src: optimized.src,
+    width: photo.width,
+    height: photo.height,
+  };
 }
 
 export function photoAlt(shoot: Shoot, index: number): string {

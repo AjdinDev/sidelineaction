@@ -1,23 +1,25 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { formatShootDate, photoAlt, photoUrl, publishedShoots, type Shoot } from '../../data/shoots';
+import { formatShootDate, getPublishedShoots, photoAlt, preparePhoto, type Shoot } from '../../data/shoots';
 
-export function getStaticPaths() {
-  return publishedShoots.map((shoot) => ({
+export async function getStaticPaths() {
+  const shoots = await getPublishedShoots();
+  return shoots.map((shoot, index) => ({
     params: { slug: shoot.slug },
-    props: { shoot },
+    props: {
+      shoot,
+      nextShoot: shoots.length > 1 ? shoots[(index + 1) % shoots.length] : null,
+    },
   }));
 }
 
 interface Props {
   shoot: Shoot;
+  nextShoot: Shoot | null;
 }
 
-const { shoot } = Astro.props;
-const shootIndex = publishedShoots.findIndex((item) => item.slug === shoot.slug);
-const nextShoot = publishedShoots.length > 1
-  ? publishedShoots[(shootIndex + 1) % publishedShoots.length]
-  : null;
+const { shoot, nextShoot } = Astro.props;
+const renderedPhotos = await Promise.all(shoot.photos.map(preparePhoto));
 const formattedDate = formatShootDate(shoot.date);
 const description = `${shoot.title} — ${shoot.photos.length} foto's van ${shoot.type.toLowerCase()} in ${shoot.location}, gefotografeerd door Sideline Action.`;
 const ratios = ['ratio--45', 'ratio--34', 'ratio--23', 'ratio--45', 'ratio--34'];
@@ -35,7 +37,7 @@ const frameFor = (index: number) => {
 };
 ---
 
-<BaseLayout title={`${shoot.title} | Sideline Action — Sportfotografie Antwerpen`} description={description} image={photoUrl(shoot, shoot.photos[0])}>
+<BaseLayout title={`${shoot.title} | Sideline Action — Sportfotografie Antwerpen`} description={description} image={renderedPhotos[0].src}>
   <main id="main">
     <section class="page-head">
       <div class="wrap">
@@ -58,9 +60,10 @@ const frameFor = (index: number) => {
     <section class="section section--top0">
       <div class="wrap">
         <div class="gal" data-gallery>
-          {shoot.photos.map((photo, index) => {
+          {shoot.photos.map((_, index) => {
             const frame = frameFor(index);
-            const src = photoUrl(shoot, photo);
+            const renderedPhoto = renderedPhotos[index];
+            const src = renderedPhoto.src;
             const alt = photoAlt(shoot, index);
             return (
               <button
@@ -73,7 +76,7 @@ const frameFor = (index: number) => {
                 aria-label={`Foto ${index + 1} van ${shoot.photos.length} groter bekijken`}
               >
                 <span class={`gal__frame ratio ${frame.ratio}`}>
-                  <img src={src} loading={index < 3 ? 'eager' : 'lazy'} decoding="async" width={photo.width} height={photo.height} alt={alt} />
+                  <img src={src} loading={index < 3 ? 'eager' : 'lazy'} decoding="async" width={renderedPhoto.width} height={renderedPhoto.height} alt={alt} />
                 </span>
                 <span class="gal__n">{String(index + 1).padStart(3, '0')}</span>
               </button>

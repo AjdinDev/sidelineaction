@@ -52,13 +52,30 @@ npm run cf:deploy
 
 This command builds and deploys the Worker and its `dist` assets together. It is not required when Workers Builds Git integration is enabled.
 
+## Portfolio beheren met Pages CMS
+
+Het portfolio wordt beheerd als een Astro content collection en kan zonder lokale ontwikkelomgeving worden bijgewerkt via [Pages CMS](https://app.pagescms.org):
+
+1. Meld aan met GitHub.
+2. Installeer de Pages CMS GitHub App uitsluitend voor de repository `AjdinDev/sidelineaction`.
+3. Open **Portfolio** en maak of bewerk een shoot.
+4. Vul de titel, het type, de locatie, de introductie en optioneel de datum in.
+5. Kies een coverfoto, voeg de galerijfoto's toe en sla op.
+
+Pages CMS gebruikt `.pages.yml` als configuratie en schrijft content en afbeeldingen rechtstreeks naar GitHub. Wanneer Workers Builds voor `main` is gekoppeld zoals hierboven beschreven, start een CMS-wijziging automatisch een nieuwe build. De bestaande liveversie blijft beschikbaar wanneer een build door ongeldige content zou falen.
+
+Nieuwe portfolio-items krijgen hun URL van de bestandsnaam die bij het aanmaken wordt gekozen. Die bestandsnaam kan daarna niet via Pages CMS worden hernoemd, zodat bestaande portfolio-URL's stabiel blijven. Een coverfoto moet ook in de galerij voorkomen. Het Astro-schema en de build controleren verplichte velden, datumnotatie, dubbele foto's en ontbrekende covers.
+
 ## Content structure
 
 - `src/pages/` — one Astro file per public route
 - `src/layouts/` — shared document metadata and site shell
 - `src/components/` — shared header, footer, loader, and lightbox
-- `src/data/shoots.ts` — portfolio metadata and photo manifests
+- `src/content/shoots/` — one CMS-editable content file per portfolio shoot
+- `src/content.config.ts` — portfolio schema and image validation
+- `src/data/shoots.ts` — typed portfolio loading, ordering, and validation helpers
+- `src/assets/portfolio/` — CMS-managed portfolio photography
 - `src/scripts/` — progressively enhanced menu, gallery, and form behavior
 - `worker/index.ts` — validated Worker route for booking notifications
-- `public/assets/` — extracted, cacheable brand and photography assets
+- `public/assets/` — remaining static brand and site assets
 - `public/_headers` — Cloudflare Workers Static Assets security and cache headers
