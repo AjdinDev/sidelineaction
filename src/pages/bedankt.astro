@@ -9,7 +9,7 @@ const followUpBefore = emailStart >= 0 ? page.follow_up_text.slice(0, emailStart
 const followUpAfter = emailStart >= 0 ? page.follow_up_text.slice(emailStart + settings.contact.email.length) : '';
 ---
 
-<BaseLayout title={page.seo.title} description={page.seo.description} image={page.seo.image}>
+<BaseLayout title={page.seo.title} description={page.seo.description} image={page.seo.image} noindex>
   <main id="main">
     <section class="section" style="padding-top:calc(var(--header-h) + clamp(5rem, 4rem + 7vw, 10rem));min-height:68svh">
       <div class="wrap wrap--text">

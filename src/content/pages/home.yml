@@ -73,15 +73,15 @@ facts:
       label: Geleverd in volledige resolutie, meteen bruikbaar voor de clubkanalen.
 offer:
   label: Aanbod
-  title: Betaalbare sportfotografie op maat van de opdracht.
-  text: Ik houd mijn tarieven betaalbaar. De prijs hangt af van de opdracht en is bespreekbaar. Wil je weten wat jouw wedstrijdreportage of spelersshoot kost?
+  title: Duidelijke prijzen voor clubs en spelers.
+  text: Kies een volledige wedstrijdreportage voor het hele team of laat één speler de hele wedstrijd volgen. Bekijk de vaste prijzen en wat er is inbegrepen.
   email_label: Stuur een mailtje
   instagram_label: Instagram
-  link_label: Wat is inbegrepen
+  link_label: Bekijk prijzen en aanbod
 booking:
   label: Boeken
   title: Klaar voor beelden van je club of van één speler?
-  text: Vertel om welke wedstrijdreportage of spelersshoot het gaat. Ik neem zo snel mogelijk contact op met een voorstel en duidelijke afspraken.
+  text: Vertel om welke wedstrijdreportage of spelersshoot het gaat. Ik neem zo snel mogelijk contact op om de boeking en afspraken te bevestigen.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:

@@ -4,14 +4,14 @@ seo:
 header:
   label: Boeken
   title: Boek een shoot
-  intro: Boek een volledige wedstrijdreportage of laat één speler tijdens een wedstrijd volgen. Vul het formulier in en ik neem zo snel mogelijk contact met je op.
+  intro: Boek een volledige wedstrijdreportage of laat één speler tijdens een wedstrijd volgen. De vaste tarieven vind je op de aanbodpagina. Vul het formulier in en ik neem zo snel mogelijk contact met je op.
 sidebar:
   label: Duidelijke afspraken
   items:
     - Voor clubs en individuele spelers
     - Levering binnen {delivery_days} dagen
     - Foto's in volledige resolutie
-    - Een betaalbare prijs die past bij de opdracht
+    - Vaste tarieven voor de hele wedstrijd
   direct_email_label: Liever rechtstreeks mailen?
   image:
     src: /assets/img/site/boeken.webp

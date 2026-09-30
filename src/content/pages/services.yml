@@ -1,5 +1,5 @@
 seo:
-  title: Diensten | Voetbalfotografie voor clubs en spelers | {brand_name}
+  title: Voetbalfotografie voor clubs en spelers | {brand_name}
   description: Wedstrijdreportages voor clubs en actiefoto's van individuele spelers in {region}.
 header:
   label: Diensten
@@ -8,10 +8,10 @@ header:
 audiences:
   - title: Voor clubs
     text: Ik fotografeer de volledige wedstrijd, van actie op het veld tot de sfeer langs de lijn. De foto's zijn geschikt voor sociale media, de clubwebsite en andere communicatie.
-    link_label: Bespreek een wedstrijd
+    link_label: Boek een teamreportage
   - title: Voor spelers
     text: Je kunt ook zonder club boeken. Ik volg één speler tijdens een wedstrijd en lever actiefoto's voor sociale media en een persoonlijk sportprofiel.
-    link_label: Bespreek een spelersshoot
+    link_label: Boek een spelersshoot
 gallery:
   label: In beeld
   title: Wat ik vastleg
@@ -53,7 +53,7 @@ process:
     - title: Selectie en bewerking
       text: Na de wedstrijd bekijk ik alle foto's, selecteer ik de beste en bewerk ik ze in mijn vaste stijl.
     - title: Levering binnen {delivery_days} dagen
-      text: Bij een volledige wedstrijdreportage ontvangt de club {photo_range} bewerkte foto's in volledige resolutie. Bij een spelersshoot spreken we de selectie vooraf af.
+      text: Bij een volledige teamwedstrijd ontvangt de club ongeveer {photo_range} bewerkte foto's in volledige resolutie. Bij een reportage van één speler ontvang je ongeveer 30–50 bewerkte foto's.
 facts:
   label: Bij een volledige wedstrijdreportage
   items:

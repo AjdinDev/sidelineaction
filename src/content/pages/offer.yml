@@ -1,10 +1,31 @@
 seo:
   title: Aanbod en prijs | {brand_name} | Voetbalfotografie
-  description: Bekijk wat je ontvangt bij een wedstrijdreportage of spelersshoot.
+  description: Bekijk de vaste prijzen en wat je ontvangt bij een wedstrijdreportage of spelersshoot.
 header:
   label: Aanbod
   title: Betaalbare sportfotografie
-  intro: Voor clubs en individuele spelers. De prijs hangt af van de opdracht en is bespreekbaar.
+  intro: Kies een volledige wedstrijdreportage voor het hele team of laat één speler de hele wedstrijd volgen.
+pricing:
+  label: Prijzen
+  title: Eén wedstrijd, twee opties.
+  intro: Beide tarieven gelden voor de hele wedstrijd.
+  items:
+    - title: Hele teamwedstrijd
+      price: 70
+      features:
+        - Volledige wedstrijd
+        - Foto’s van het team
+        - Actie + sfeer
+        - ±90–130 bewerkte foto’s
+        - Levering binnen {delivery_days} dagen
+    - title: 1 speler
+      price: 35
+      features:
+        - Volledige wedstrijd
+        - Focus op één speler
+        - ±30–50 bewerkte foto’s
+        - Levering binnen {delivery_days} dagen
+  button_label: Boek een shoot
 overview:
   image:
     src: /assets/img/site/aanbod.webp
@@ -16,18 +37,18 @@ overview:
     - Uiterlijk {delivery_days} dagen na de wedstrijd of shoot
     - Actie, spelers, sfeer en wedstrijdmomenten
     - Geschikt voor sociale media, websites en persoonlijke sportprofielen
-  button_label: Vraag een voorstel
+  button_label: Boek een shoot
 faq:
   label: Praktisch
   items:
     - title: Wat kost het?
-      text: Ik houd mijn tarieven betaalbaar. De prijs hangt af van de opdracht en is bespreekbaar. Daarom staan er geen vaste bedragen op de website.
-    - title: Hoe vraag ik een prijsvoorstel aan?
-      text: Stuur een mail naar {email} of een bericht via Instagram {instagram_handle}. Vermeld om welke wedstrijdreportage of spelersshoot het gaat.
+      text: Je vindt de actuele tarieven hierboven. Beide opties gelden voor de hele wedstrijd.
+    - title: Hoe boek ik een reportage?
+      text: Vul het boekingsformulier in, stuur een mail naar {email} of een bericht via Instagram {instagram_handle}. Vermeld om welke wedstrijdreportage of spelersshoot het gaat.
     - title: Wanneer betaal ik?
       text: "We spreken de betaling vooraf af: je betaalt een voorschot bij het vastleggen van de opdracht en het saldo na de levering."
     - title: Hoeveel foto's krijg je?
-      text: Bij een volledige wedstrijdreportage ontvangt de club minimaal {photo_minimum} en meestal {photo_range} bewerkte foto's. Voor een spelersshoot spreken we het aantal vooraf af.
+      text: Bij een volledige teamwedstrijd ontvang je ongeveer {photo_range} bewerkte foto's. Bij een reportage van één speler ontvang je ongeveer 30–50 bewerkte foto's.
     - title: Wanneer ontvang ik de foto's?
       text: Uiterlijk {delivery_days} dagen na de wedstrijd of shoot.
     - title: Voor wie is dit?
@@ -41,8 +62,8 @@ agreements:
 cta:
   label: Contact
   title: Een wedstrijdreportage of spelersshoot boeken?
-  text: Vul het formulier in met de datum en de locatie. Ik neem zo snel mogelijk contact op met een voorstel op maat.
-  primary_label: Vraag een voorstel
+  text: Vul het formulier in met de datum, de locatie en je keuze voor het hele team of één speler. Ik neem zo snel mogelijk contact op.
+  primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:
     src: /assets/img/site/band-cta.webp

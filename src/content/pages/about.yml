@@ -44,7 +44,7 @@ process:
 cta:
   label: Boeken
   title: Laat je wedstrijd of speler fotograferen
-  text: Vul het formulier in en ik neem zo snel mogelijk contact op met een voorstel op maat.
+  text: Vul het formulier in en ik neem zo snel mogelijk contact op om de boeking en afspraken te bevestigen.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:

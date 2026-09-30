@@ -444,6 +444,36 @@ content:
         fields:
           - { name: seo, component: seo }
           - { name: header, component: page_header }
+          - name: pricing
+            label: Prijzen
+            type: object
+            required: true
+            fields:
+              - { name: label, label: Bovenlabel, type: string, required: true }
+              - { name: title, label: Titel, type: string, required: true }
+              - { name: intro, label: Introductie, type: text, required: true }
+              - name: items
+                label: Prijsopties
+                type: object
+                required: true
+                description: Voeg prijsopties toe, pas ze aan of wijzig de volgorde.
+                list:
+                  min: 1
+                  collapsible: { collapsed: true, summary: "{title}" }
+                fields:
+                  - { name: title, label: Naam, type: string, required: true }
+                  - name: price
+                    label: Prijs in euro
+                    type: number
+                    required: true
+                    options: { min: 0 }
+                  - name: features
+                    label: Inbegrepen
+                    type: string
+                    required: true
+                    description: Voeg per pakket de inbegrepen onderdelen toe of wijzig de volgorde.
+                    list: { min: 1, collapsible: false }
+              - { name: button_label, label: Knoptekst, type: string, required: true }
           - name: overview
             label: Overzicht
             type: object

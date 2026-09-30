@@ -10,16 +10,50 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const rawSettings = await getSiteSettings();
 const settings = resolveSiteTokens(rawSettings, rawSettings);
-const { title, description, noindex = false } = Astro.props;
+const { title, description, imageAlt = settings.default_og_image.alt, noindex = false } = Astro.props;
 const image = Astro.props.image || settings.default_og_image.src;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+const siteUrl = new URL('/', Astro.site).toString();
+const organizationId = new URL('/#organization', Astro.site).toString();
+const homeStructuredData = Astro.url.pathname === '/' ? {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': new URL('/#website', Astro.site).toString(),
+      url: siteUrl,
+      name: settings.brand_name,
+      alternateName: 'sidelineaction.be',
+      inLanguage: 'nl-BE',
+      publisher: { '@id': organizationId },
+    },
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: settings.brand_name,
+      url: siteUrl,
+      description: settings.footer.tagline,
+      logo: new URL('/assets/brand/logo-stacked.svg', Astro.site).toString(),
+      email: settings.contact.email,
+      areaServed: settings.region_full,
+      sameAs: [settings.contact.instagram_url, settings.contact.tiktok_url],
+    },
+  ],
+} : null;
+const extraStructuredData = Astro.props.structuredData
+  ? (Array.isArray(Astro.props.structuredData) ? Astro.props.structuredData : [Astro.props.structuredData])
+  : [];
+const structuredData = [homeStructuredData, ...extraStructuredData].filter(Boolean) as Record<string, unknown>[];
+const serializeStructuredData = (value: Record<string, unknown>) => JSON.stringify(value).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -31,7 +65,7 @@ const socialImage = new URL(image, Astro.site);
     <meta name="description" content={description} />
     <meta name="author" content={settings.photographer_name} />
     <meta name="theme-color" content="#FCFBF9" />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,10 +78,15 @@ const socialImage = new URL(image, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    {structuredData.map((item) => (
+      <script type="application/ld+json" set:html={serializeStructuredData(item)} />
+    ))}
   </head>
   <body>
     <a class="skip-link" href="#main">Naar de inhoud</a>

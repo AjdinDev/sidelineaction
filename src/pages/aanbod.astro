@@ -6,11 +6,43 @@ import { getOfferPage, getSiteSettings, resolveSiteTokens } from '../data/conten
 
 const settings = await getSiteSettings();
 const page = resolveSiteTokens(await getOfferPage(), settings);
+const formatPrice = (price: number) => `€${new Intl.NumberFormat('nl-BE', {
+  maximumFractionDigits: 2,
+}).format(price)}`;
 ---
 
 <BaseLayout title={page.seo.title} description={page.seo.description} image={page.seo.image}>
   <main id="main">
     <PageHeader {...page.header} />
+
+    <section class="section section--top0" aria-labelledby="prijzen">
+      <div class="wrap">
+        <div class="split split--top pricing__head">
+          <div>
+            <p class="label label--rule">{page.pricing.label}</p>
+            <h2 class="h2 mt-2" id="prijzen">{page.pricing.title}</h2>
+          </div>
+          <p class="muted measure" data-reveal="fade">{page.pricing.intro}</p>
+        </div>
+        <div class="pricing">
+          {page.pricing.items.map((item, index) => (
+            <article class="pricing__item" data-reveal style={`--reveal-delay:${index * 90}ms`}>
+              <span class="pricing__n">{String(index + 1).padStart(2, '0')}</span>
+              <p class="pricing__price">{formatPrice(item.price)}</p>
+              <h3>{item.title}</h3>
+              <ul class="pricing__features">
+                {item.features.map((feature) => (
+                  <li>{feature}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div class="btn-row mt-4" data-reveal>
+          <a class="btn btn--solid" href="/boeken"><span>{page.pricing.button_label}</span><svg class="btn-arrow" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true"><path d="M10.5 1L14 4.5L10.5 8M14 4.5H0" stroke="currentColor" stroke-width="1.2" /></svg></a>
+        </div>
+      </div>
+    </section>
 
     <section class="section section--top0">
       <div class="wrap">

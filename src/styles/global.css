@@ -538,6 +538,35 @@ body.is-menu-open .sa-header .sa-logo__light{ opacity:0; }
   .service-path + .service-path{ border-left:1px solid var(--line); }
 }
 
+/* Prijzen blijven in dezelfde rustige, redactionele stijl als de rest van de site. */
+.pricing__head{ margin-bottom:clamp(2.5rem,2rem + 3vw,4.5rem); }
+.pricing{
+  display:grid; grid-template-columns:1fr; border-top:1px solid var(--line);
+}
+.pricing__item{
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:.75rem 1.5rem;
+  padding-block:clamp(2rem,1.5rem + 2vw,3.5rem); border-bottom:1px solid var(--line);
+}
+.pricing__n{
+  grid-row:1 / span 3; padding-top:.4rem;
+  font-family:var(--font-display); font-size:var(--fs-label); font-weight:600;
+  letter-spacing:.16em; color:var(--muted-2);
+}
+.pricing__price{
+  font-family:var(--font-display); font-size:clamp(2.75rem,2rem + 3vw,5rem);
+  font-weight:500; line-height:1; letter-spacing:-.045em;
+}
+.pricing__item h3{ font-size:var(--fs-h3); }
+.pricing__features{ display:grid; gap:.45rem; color:var(--muted); max-width:29em; }
+.pricing__features li{ display:flex; gap:.65rem; align-items:baseline; }
+.pricing__features li::before{ content:'—'; color:var(--muted-2); }
+@media (min-width:721px){
+  .pricing{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .pricing__item{ padding-inline:clamp(1.5rem,1rem + 2vw,3rem); }
+  .pricing__item:first-child{ padding-left:0; }
+  .pricing__item + .pricing__item{ border-left:1px solid var(--line); }
+}
+
 /* --- 15. Cijfers ---------------------------------------------------------- */
 .facts{ display:grid; gap:0; border-top:1px solid var(--line); }
 @media (min-width:721px){ .facts{ grid-template-columns:repeat(3,minmax(0,1fr)); } }

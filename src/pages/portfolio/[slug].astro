@@ -29,6 +29,29 @@ const [renderedPhotos, settings, rawPage] = await Promise.all([
 const page = resolveSiteTokens(rawPage, settings);
 const formattedDate = formatShootDate(shoot.date);
 const description = `${shoot.title}: ${shoot.photos.length} foto's van ${shoot.type.toLowerCase()} in ${shoot.location}, gefotografeerd door ${settings.brand_name}.`;
+const breadcrumbData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: page.detail.home_label,
+      item: new URL('/', Astro.site).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: page.detail.portfolio_label,
+      item: new URL('/portfolio/', Astro.site).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: shoot.title,
+    },
+  ],
+};
 const ratios = ['ratio--45', 'ratio--34', 'ratio--23', 'ratio--45', 'ratio--34'];
 const frameFor = (index: number) => {
   if (index % 11 === 0) {
@@ -44,7 +67,13 @@ const frameFor = (index: number) => {
 };
 ---
 
-<BaseLayout title={`${shoot.title} | ${settings.brand_name} | Sportfotografie Antwerpen`} description={description} image={renderedPhotos[0].src}>
+<BaseLayout
+  title={`${shoot.title} | Voetbalfotografie Antwerpen`}
+  description={description}
+  image={renderedPhotos[0].src}
+  imageAlt={photoAlt(shoot, 0, settings.brand_name)}
+  structuredData={breadcrumbData}
+>
   <main id="main">
     <section class="page-head">
       <div class="wrap">

@@ -39,7 +39,7 @@ const featuredImages = await Promise.all(page.featured.images.map(preparePhoto))
             <p class="label hero__eyebrow">{page.hero.eyebrow}</p>
             <h1 class="hero__title">
               {page.hero.title_lines.map((line, index) => (
-                <span><i style={`--d:${150 + index * 110}ms`}>{line}</i></span>
+                <><span><i style={`--d:${150 + index * 110}ms`}>{line}</i></span>{index < page.hero.title_lines.length - 1 && ' '}</>
               ))}
             </h1>
             <p class="hero__sub">{page.hero.subtitle}</p>

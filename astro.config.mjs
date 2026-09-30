@@ -4,7 +4,9 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://sidelineaction.be',
   output: 'static',
-  integrations: [sitemap()],
+  integrations: [sitemap({
+    filter: (page) => new URL(page).pathname !== '/bedankt/',
+  })],
   markdown: {
     syntaxHighlight: false,
   },

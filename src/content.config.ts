@@ -221,6 +221,17 @@ const offerPage = defineCollection({
   schema: z.object({
   seo,
   header: pageHeader,
+  pricing: z.object({
+    label: requiredText,
+    title: requiredText,
+    intro: requiredText,
+    items: z.array(z.object({
+      title: requiredText,
+      price: z.number().nonnegative(),
+      features: z.array(requiredText).min(1),
+    })).min(1),
+    button_label: requiredText,
+  }),
   overview: z.object({
     image: siteImage,
     items: z.array(requiredText).min(1),
