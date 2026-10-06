@@ -13,22 +13,27 @@ hero:
   meta: "{photographer_name}, Antwerpen"
   image:
     src: /assets/img/site/hero.webp
-    alt: Voetballer in een geel shirt dribbelt met de bal, gefotografeerd door {photographer_name}
+    alt: Voetballer in een geel shirt dribbelt met de bal, gefotografeerd door
+      {photographer_name}
 intro:
   label: Sideline Action
   title: Voetbalfotografie voor clubs én individuele spelers.
-  lead: Boek een volledige wedstrijdreportage voor je club of laat één speler tijdens een wedstrijd volgen.
-  text: Ik leg actie, duels, emoties en sfeer vast. Daarna selecteer en bewerk ik de beste foto's voor sociale media, websites en sportprofielen.
+  lead: Boek een volledige wedstrijdreportage voor je club of laat één speler
+    tijdens een wedstrijd volgen.
+  text: Ik leg actie, duels, emoties en sfeer vast. Daarna selecteer en bewerk ik
+    de beste foto's voor sociale media, websites en sportprofielen.
   link_label: Over mij
   images:
     - src: /assets/img/site/intro-1.webp
-      alt: Duel om de bal tussen twee spelers tijdens een voetbalwedstrijd in Antwerpen
+      alt: Duel om de bal tussen twee spelers tijdens een voetbalwedstrijd in
+        Antwerpen
     - src: /assets/img/site/intro-2.webp
       alt: Speler voor het doel tijdens een voetbalwedstrijd in Antwerpen
 featured:
   label: Portfolio
   shoot: src/content/shoots/ternesse.md
-  text: Ik fotografeer de wedstrijd van de opwarming tot het laatste fluitsignaal en lever een ruime selectie zorgvuldig bewerkte foto's.
+  text: Ik fotografeer de wedstrijd van de opwarming tot het laatste fluitsignaal
+    en lever een ruime selectie zorgvuldig bewerkte foto's.
   link_label: Bekijk de shoot
   portfolio_label: Volledig portfolio
   caption: Duel om de bal, tweede helft.
@@ -42,22 +47,30 @@ band_image:
 services:
   label: Diensten
   title: Twee manieren om te boeken.
-  text: Clubs krijgen een volledige wedstrijdreportage. Spelers kunnen mij boeken om hen tijdens een wedstrijd te volgen.
+  text: Clubs krijgen een volledige wedstrijdreportage. Spelers kunnen mij boeken
+    om hen tijdens een wedstrijd te volgen.
   link_label: Alle diensten
   items:
     - title: Voor clubs
-      text: Een volledige wedstrijdreportage met actie, spelers, supporters en sfeer voor sociale media, de clubwebsite en andere communicatie.
+      text: Een volledige wedstrijdreportage met actie, spelers, supporters en sfeer
+        voor sociale media, de clubwebsite en andere communicatie.
     - title: Voor spelers
-      text: Actiefoto's van één speler tijdens een wedstrijd, geschikt voor sociale media en een persoonlijk sportprofiel.
+      text: Actiefoto's van één speler tijdens een wedstrijd, geschikt voor sociale
+        media en een persoonlijk sportprofiel.
     - title: Actie en sfeer
-      text: Duels, sprints, schoten, emoties en momenten langs de lijn die de wedstrijd compleet in beeld brengen.
+      text: Duels, sprints, schoten, emoties en momenten langs de lijn die de
+        wedstrijd compleet in beeld brengen.
     - title: Selectie en levering
       text: Ik selecteer en bewerk de beste foto's in een vaste, herkenbare stijl.
 about:
   label: Over mij
   title: Ik ben {photographer_name}.
-  lead: Ik ben {photographer_age} jaar en neem sportfotografie serieus.
-  text: Ik fotografeer voetbalwedstrijden in {region}. Ik leg actie, spelers, supporters en sfeer vast en selecteer na afloop de beste foto's.
+  lead: Sportfotografie met oog voor het juiste moment
+  text: >-
+    
+    Ik fotografeer voetbalwedstrijden in Antwerpen en omgeving. Van de
+    beslissende actie tot de viering na de wedstrijd. Ik lees het spel mee en
+    sta klaar wanneer het gebeurt.
   link_label: Mijn verhaal en apparatuur
   image:
     src: /assets/img/site/over-mij.webp
@@ -74,14 +87,17 @@ facts:
 offer:
   label: Aanbod
   title: Duidelijke prijzen voor clubs en spelers.
-  text: Kies een volledige wedstrijdreportage voor het hele team of laat één speler de hele wedstrijd volgen. Bekijk de vaste prijzen en wat er is inbegrepen.
+  text: Kies een volledige wedstrijdreportage voor het hele team of laat één
+    speler de hele wedstrijd volgen. Bekijk de vaste prijzen en wat er is
+    inbegrepen.
   email_label: Stuur een mailtje
   instagram_label: Instagram
   link_label: Bekijk prijzen en aanbod
 booking:
   label: Boeken
   title: Klaar voor beelden van je club of van één speler?
-  text: Vertel om welke wedstrijdreportage of spelersshoot het gaat. Ik neem zo snel mogelijk contact op om de boeking en afspraken te bevestigen.
+  text: Vertel om welke wedstrijdreportage of spelersshoot het gaat. Ik neem zo
+    snel mogelijk contact op om de boeking en afspraken te bevestigen.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:
