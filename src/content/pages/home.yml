@@ -65,10 +65,8 @@ services:
 about:
   label: Over mij
   title: Ik ben {photographer_name}.
-  lead: Sportfotografie met oog voor het juiste moment
-  text: >-
-    
-    Ik fotografeer voetbalwedstrijden in Antwerpen en omgeving. Van de
+  lead: "Sportfotografie met oog voor het juiste moment "
+  text: Ik fotografeer voetbalwedstrijden in Antwerpen en omgeving. Van de
     beslissende actie tot de viering na de wedstrijd. Ik lees het spel mee en
     sta klaar wanneer het gebeurt.
   link_label: Mijn verhaal en apparatuur
