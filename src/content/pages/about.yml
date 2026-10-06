@@ -4,13 +4,17 @@ seo:
 header:
   label: Over mij
   title: Over mij
-  intro: Ik ben {photographer_name}. Ik ben {photographer_age} jaar en neem sportfotografie serieus.
+  intro: .
 story:
   label: Mijn verhaal
   paragraphs:
-    - Ik fotografeer voetbalwedstrijden voor clubs en individuele spelers in {region}.
-    - Tijdens wedstrijden leg ik actie, spelers, supporters en sfeer vast. Na afloop selecteer en bewerk ik de beste foto's.
-    - Ik maak vooraf duidelijke afspraken, lever de foto's uiterlijk {delivery_days} dagen na de wedstrijd of shoot en geef iedere opdrachtgever dezelfde aandacht.
+    - Ik fotografeer voetbalwedstrijden voor clubs en individuele spelers in
+      {region}.
+    - Tijdens wedstrijden leg ik actie, spelers, supporters en sfeer vast. Na
+      afloop selecteer en bewerk ik de beste foto's.
+    - Ik maak vooraf duidelijke afspraken, lever de foto's uiterlijk
+      {delivery_days} dagen na de wedstrijd of shoot en geef iedere
+      opdrachtgever dezelfde aandacht.
   link_label: Bekijk mijn werk
   image:
     src: /assets/img/site/over-mij.webp
@@ -18,7 +22,8 @@ story:
 equipment:
   label: Mijn apparatuur
   title: Waar ik mee fotografeer
-  intro: Een vaste set die ik goed ken. De telelens gebruik ik voor de actie op het veld, de groothoek voor sfeer langs de lijn.
+  intro: Een vaste set die ik goed ken. De telelens gebruik ik voor de actie op
+    het veld, de groothoek voor sfeer langs de lijn.
   items:
     - name: Canon EOS 40D
       description: Camera
@@ -31,20 +36,27 @@ equipment:
 process:
   label: Mijn aanpak
   title: Hoe ik een wedstrijd aanpak
-  intro: Tijdens iedere wedstrijd leg ik de belangrijkste acties en de sfeer langs de zijlijn vast. Daarna selecteer en bewerk ik de beste foto's voor de gekozen opdracht.
+  intro: Tijdens iedere wedstrijd leg ik de belangrijkste acties en de sfeer langs
+    de zijlijn vast. Daarna selecteer en bewerk ik de beste foto's voor de
+    gekozen opdracht.
   steps:
     - title: Voor de wedstrijd
-      text: We spreken af waar en wanneer ik fotografeer en welke ploeg of speler centraal staat. Daarna leggen we de afspraken kort op papier.
+      text: We spreken af waar en wanneer ik fotografeer en welke ploeg of speler
+        centraal staat. Daarna leggen we de afspraken kort op papier.
     - title: Langs de lijn
-      text: Ik fotografeer de volledige wedstrijd en wissel tussen actie op het veld en sfeer langs de kant.
+      text: Ik fotografeer de volledige wedstrijd en wissel tussen actie op het veld
+        en sfeer langs de kant.
     - title: De selectie
-      text: Na de wedstrijd bekijk ik alle foto's en selecteer ik de beelden die de wedstrijd het best vertellen.
+      text: Na de wedstrijd bekijk ik alle foto's en selecteer ik de beelden die de
+        wedstrijd het best vertellen.
     - title: De bewerking
-      text: Ik bewerk elke geselecteerde foto, zodat de reeks één herkenbare stijl krijgt.
+      text: Ik bewerk elke geselecteerde foto, zodat de reeks één herkenbare stijl
+        krijgt.
 cta:
   label: Boeken
   title: Laat je wedstrijd of speler fotograferen
-  text: Vul het formulier in en ik neem zo snel mogelijk contact op om de boeking en afspraken te bevestigen.
+  text: Vul het formulier in en ik neem zo snel mogelijk contact op om de boeking
+    en afspraken te bevestigen.
   primary_label: Boek een shoot
   secondary_label: Bekijk het aanbod
   image:
