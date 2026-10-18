@@ -12,4 +12,5 @@ photos:
   - ../../assets/portfolio/mve4bj3n-bbixt412.jpeg
   - ../../assets/portfolio/mve4bj3n-s71dswpm.jpeg
   - ../../assets/portfolio/mve4c2gu-y5hssj7s.jpeg
+  - ../../assets/portfolio/mve4lx6c-y60mrcor.jpeg
 ---
