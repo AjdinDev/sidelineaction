@@ -58,7 +58,6 @@ function siteTokenValues(settings: SiteSettings): Record<string, string> {
   return {
     brand_name: settings.brand_name,
     photographer_name: settings.photographer_name,
-    photographer_age: String(settings.photographer_age),
     region: settings.region,
     region_full: settings.region_full,
     email: settings.contact.email,

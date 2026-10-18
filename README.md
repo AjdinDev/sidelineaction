@@ -66,6 +66,8 @@ Pages CMS gebruikt `.pages.yml` als configuratie en schrijft content en afbeeldi
 
 Nieuwe portfolio-items krijgen hun URL van de bestandsnaam die bij het aanmaken wordt gekozen. Die bestandsnaam kan daarna niet via Pages CMS worden hernoemd, zodat bestaande portfolio-URL's stabiel blijven. Hetzelfde geldt voor de bestandsnaam van een shoottype, omdat portfolio-items ernaar verwijzen. Een coverfoto moet ook in de galerij voorkomen. Het Astro-schema en de build controleren verplichte velden, datumnotatie, dubbele foto's, ontbrekende covers, verwijzingen naar shoottypes en de uitgelichte homepage-shoot.
 
+De referentie naar shoottypes gebruikt expliciet `fields.name` voor zoeken en het label. Pages CMS gebruikt `name` ook voor de bestandsnaam; de expliciete veldnaam zorgt dat de keuzelijst de inhoud van het veld **Naam** toont.
+
 Waarden zoals de naam, regio, levertijd en aantallen worden centraal beheerd onder **Algemene instellingen**. Paginacontent kan de bestaande tokens gebruiken, bijvoorbeeld `{brand_name}`, `{photographer_name}`, `{region}`, `{delivery_days}`, `{photo_minimum}` en `{photo_range}`. Routes, de visuele layout, de veldnamen van het boekingsformulier en de Cloudflare Worker blijven bewust code-beheerd.
 
 ## Content structure

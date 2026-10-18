@@ -122,9 +122,9 @@ content:
         description: Beheer de beschikbare keuzes onder Shoottypes.
         options:
           collection: shoot_types
-          search: name
+          search: fields.name
           value: "{path}"
-          label: "{primary}"
+          label: "{fields.name}"
           placeholder: Kies een soort shoot
       - name: location
         label: Locatie
@@ -176,11 +176,6 @@ content:
         fields:
           - { name: brand_name, label: Merknaam, type: string, required: true }
           - { name: photographer_name, label: Naam fotograaf, type: string, required: true }
-          - name: photographer_age
-            label: Leeftijd fotograaf
-            type: number
-            required: true
-            options: { min: 1, max: 120 }
           - { name: region, label: Regio kort, type: string, required: true }
           - { name: region_full, label: Regio volledig, type: string, required: true }
           - name: contact

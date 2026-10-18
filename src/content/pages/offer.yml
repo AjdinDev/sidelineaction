@@ -7,6 +7,27 @@ header:
   title: Betaalbare sportfotografie
   intro: Kies een volledige wedstrijdreportage voor het hele team of laat één
     speler de hele wedstrijd volgen.
+pricing:
+  label: Prijzen
+  title: Eén wedstrijd, twee opties.
+  intro: Beide tarieven gelden voor de hele wedstrijd.
+  items:
+    - title: Hele teamwedstrijd
+      price: 70
+      features:
+        - Volledige wedstrijd
+        - Foto’s van het team
+        - Actie + sfeer
+        - ±{photo_range} bewerkte foto’s
+        - Levering binnen {delivery_days} dagen
+    - title: 1 speler
+      price: 35
+      features:
+        - Volledige wedstrijd
+        - Focus op één speler
+        - ±30–50 bewerkte foto’s
+        - Levering binnen {delivery_days} dagen
+  button_label: Boek een shoot
 overview:
   image:
     src: /assets/img/site/aanbod.webp

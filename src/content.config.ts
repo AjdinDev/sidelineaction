@@ -87,7 +87,6 @@ const site = defineCollection({
   schema: z.object({
   brand_name: requiredText,
   photographer_name: requiredText,
-  photographer_age: z.number().int().min(1).max(120),
   region: requiredText,
   region_full: requiredText,
   contact: z.object({
