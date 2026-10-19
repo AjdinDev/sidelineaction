@@ -8,6 +8,7 @@ published: true
 order: 0
 cover: ../../assets/portfolio/mve4b5ld-vqv7nrdc.jpeg
 photos:
+  - ../../assets/portfolio/mve4b5ld-vqv7nrdc.jpeg
   - ../../assets/portfolio/mve4bj3n-ux5mwyhx.jpeg
   - ../../assets/portfolio/mve4bj3n-bbixt412.jpeg
   - ../../assets/portfolio/mve4bj3n-s71dswpm.jpeg

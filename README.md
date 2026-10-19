@@ -60,11 +60,11 @@ De zichtbare website-inhoud wordt beheerd met Astro content collections en kan z
 2. Installeer de Pages CMS GitHub App uitsluitend voor de repository `AjdinDev/sidelineaction`.
 3. Gebruik **Website-inhoud** om algemene gegevens, pagina's, SEO-tekst, afbeeldingen en herhaalbare blokken zoals FAQ's, apparatuur, processtappen en afspraken te bewerken.
 4. Beheer de keuzelijst voor het type shoot onder **Shoottypes**.
-5. Open **Portfolio** om een shoot te maken of te bewerken, selecteer het type uit de keuzelijst en voeg de cover en galerijfoto's toe.
+5. Open **Portfolio** om een shoot te maken of te bewerken, selecteer het type uit de keuzelijst en voeg de galerijfoto's toe. Een coverfoto is optioneel; zonder cover wordt de eerste galerijfoto gebruikt.
 
 Pages CMS gebruikt `.pages.yml` als configuratie en schrijft content en afbeeldingen rechtstreeks naar GitHub. Wanneer Workers Builds voor `main` is gekoppeld zoals hierboven beschreven, start een CMS-wijziging automatisch een nieuwe build. De bestaande liveversie blijft beschikbaar wanneer een build door ongeldige content zou falen.
 
-Nieuwe portfolio-items krijgen hun URL van de bestandsnaam die bij het aanmaken wordt gekozen. Die bestandsnaam kan daarna niet via Pages CMS worden hernoemd, zodat bestaande portfolio-URL's stabiel blijven. Hetzelfde geldt voor de bestandsnaam van een shoottype, omdat portfolio-items ernaar verwijzen. Een coverfoto moet ook in de galerij voorkomen. Het Astro-schema en de build controleren verplichte velden, datumnotatie, dubbele foto's, ontbrekende covers, verwijzingen naar shoottypes en de uitgelichte homepage-shoot.
+Nieuwe portfolio-items krijgen hun URL van de bestandsnaam die bij het aanmaken wordt gekozen. Die bestandsnaam kan daarna niet via Pages CMS worden hernoemd, zodat bestaande portfolio-URL's stabiel blijven. Hetzelfde geldt voor de bestandsnaam van een shoottype, omdat portfolio-items ernaar verwijzen. Een zelfgekozen coverfoto moet ook in de galerij voorkomen. Zonder coverfoto wordt de eerste galerijfoto gebruikt; een galerij moet minstens één foto bevatten. Het Astro-schema en de build controleren verplichte velden, datumnotatie, dubbele foto's, ongeldige coverfoto's, verwijzingen naar shoottypes en de uitgelichte homepage-shoot.
 
 De referentie naar shoottypes gebruikt expliciet `fields.name` voor zoeken en het label. Pages CMS gebruikt `name` ook voor de bestandsnaam; de expliciete veldnaam zorgt dat de keuzelijst de inhoud van het veld **Naam** toont.
 

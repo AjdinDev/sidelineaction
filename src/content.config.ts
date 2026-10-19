@@ -67,7 +67,10 @@ const shoots = defineCollection({
     intro: requiredText,
     published: z.boolean().default(true),
     order: z.number().int().min(0).default(0),
-    cover: image(),
+    cover: z.preprocess(
+      (value) => value === '' || value === null ? undefined : value,
+      image().optional(),
+    ),
     photos: z.array(image()).min(1),
   }),
 });

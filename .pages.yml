@@ -152,7 +152,8 @@ content:
       - name: cover
         label: Coverfoto
         type: image
-        required: true
+        required: false
+        description: Optioneel. Laat leeg om de eerste galerijfoto te gebruiken, of kies een andere foto uit de galerij.
         options: { media: portfolio, extensions: [jpg, jpeg, png, webp] }
       - name: photos
         label: Galerij

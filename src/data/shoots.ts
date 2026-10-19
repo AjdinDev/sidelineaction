@@ -2,9 +2,10 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-type ShootData = Omit<CollectionEntry<'shoots'>['data'], 'type'>;
+type ShootData = Omit<CollectionEntry<'shoots'>['data'], 'type' | 'cover'>;
 
 export type Shoot = ShootData & {
+  cover: ImageMetadata;
   slug: string;
   type: string;
   typeReference: string;
@@ -53,6 +54,7 @@ export async function getPublishedShoots(): Promise<Shoot[]> {
 
     return {
       ...entry.data,
+      cover: entry.data.cover ?? entry.data.photos[0],
       slug: slugFromEntryId(entry.id),
       type,
       typeReference,
