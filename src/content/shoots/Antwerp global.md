@@ -1,5 +1,5 @@
 ---
-title: "Antwerp global fc "
+title: Antwerp global fc
 type: src/content/shoot-types/voetbalwedstrijd.yml
 location: "El citadel borsbeek "
 date: 2026-10-25
