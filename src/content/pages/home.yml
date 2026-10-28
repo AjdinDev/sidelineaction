@@ -24,23 +24,23 @@ intro:
     de beste foto's voor sociale media, websites en sportprofielen.
   link_label: Over mij
   images:
-    - src: /assets/img/site/intro-1.jpeg
+    - src: /assets/img/site/mvsk4rft-u00uqt0r.jpeg
       alt: Duel om de bal tussen twee spelers tijdens een voetbalwedstrijd in
         Antwerpen
     - src: /assets/img/site/intro-2.webp
       alt: Speler voor het doel tijdens een voetbalwedstrijd in Antwerpen
 featured:
   label: Portfolio
-  shoot: src/content/shoots/ternesse.md
+  shoot: src/content/shoots/Antwerp global.md
   text: Ik fotografeer de wedstrijd van de opwarming tot het laatste fluitsignaal
     en lever een ruime selectie zorgvuldig bewerkte foto's.
   link_label: Bekijk de shoot
   portfolio_label: Volledig portfolio
   caption: Duel om de bal, tweede helft.
   images:
-    - ../../assets/portfolio/ternesse-003.webp
     - ../../assets/portfolio/mvsju6p7-2ycgsf3w.jpeg
     - ../../assets/portfolio/mvsjwe60-vsb583o4.jpeg
+    - ../../assets/portfolio/mvskh628-xsohagiz.png
 band_image:
   src: /assets/img/site/mvsa2k0a-phuky1qs.jpeg
   alt: "Team foto van antwerp global fc in antwerpen "
