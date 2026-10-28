@@ -12,7 +12,7 @@ hero:
   secondary_label: Boek een shoot
   meta: "{photographer_name}, Antwerpen"
   image:
-    src: /assets/img/site/hero.webp
+    src: /assets/img/site/mvs9r8u6-n0ewhox1.jpeg
     alt: Voetballer in een geel shirt dribbelt met de bal, gefotografeerd door
       {photographer_name}
 intro:
@@ -38,12 +38,12 @@ featured:
   portfolio_label: Volledig portfolio
   caption: Duel om de bal, tweede helft.
   images:
-    - ../../assets/portfolio/ternesse-002.webp
-    - ../../assets/portfolio/ternesse-004.webp
     - ../../assets/portfolio/ternesse-003.webp
+    - ../../assets/portfolio/mvs9rz0s-qpv5ww7f.jpeg
+    - ../../assets/portfolio/mvs9xk6e-852figi9.jpeg
 band_image:
-  src: /assets/img/site/band-1.webp
-  alt: Het team verzamelt rond de coach tijdens een voetbalwedstrijd in Antwerpen
+  src: /assets/img/site/mvsa2k0a-phuky1qs.jpeg
+  alt: "Team foto van antwerp global fc in antwerpen "
 services:
   label: Diensten
   title: Twee manieren om te boeken.
